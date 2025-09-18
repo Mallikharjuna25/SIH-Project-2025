@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Civic Report</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="Gallery.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+
+   <!-- Navigation -->
+    <nav class="nav" id="navigation">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 10c0 6-1 8-8 8s-8-2-8-8 1-8 8-8 8 2 8 8z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                </div>
+                <span class="logo-text">Civic Report</span>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <div class="nav-menu desktop-nav">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="report-issue.html" class="nav-link">Report Issue</a>
+                <a href="Gallery.html" class="nav-link">Gallery</a>
+                <a href="view-issues.html" class="nav-link">View Issues</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="admin-login.html" class="btn btn-primary btn-sm">Admin Login</a>
+            </div>
+
+            <!-- Mobile menu button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+                <svg class="close-icon hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div class="mobile-nav hidden" id="mobileNav">
+            <a href="index.html" class="mobile-nav-link active">Home</a>
+            <a href="about.html" class="mobile-nav-link">About</a>
+            <a href="report-issue.html" class="mobile-nav-link">Report Issue</a>
+            <a href="view-issues.html" class="mobile-nav-link">View Issues</a>
+            <a href="contact.html" class="mobile-nav-link">Contact</a>
+            <a href="admin-login.html" class="btn btn-primary btn-sm mobile-admin-btn">Admin Login</a>
+        </div>
+    </nav>
+    <main>
+        <section class="gallery-hero">
+            <div class="container">
+                <h1 class="gallery-hero-title">Resolved Issues Gallery</h1>
+                <p class="gallery-hero-description">Browse through the before-and-after photos of issues successfully resolved by our community and authorities.</p>
+            </div>
+        </section>
+
+        <section id="resolved-issues" class="gallery-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Visual Proof of <span class="gradient-text">Resolution</span></h2>
+                    <p class="section-description">See the tangible impact of your reports with these compelling before and after transformations.</p>
+                </div>
+                <div id="carouselExampleFade" class="carousel slide carousel-fade">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="./maxresdefault.jpg" height="650px" class="d-block w-100" alt="Before and after of a cleaned area">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./lake clearage.webp" height="650px" class="d-block w-100" alt="Before and after of a lake clearage">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./trash-pickup-baltimore-before-after-01-600x404.jpg" height="650px" class="d-block w-100" alt="Before and after of trash pickup">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./LED-Nayland-before-and-after-Recovered.jpg" height="650px" class="d-block w-100" alt="Before and after of a streetlight repair">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./drpothole-left-3.jpg" height="650px" class="d-block w-100" alt="Before and after of a pothole repair">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./water leakage.jpg" height="650px" class="d-block w-100" alt="Before and after of a water leakage repair">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="search" class="search-options">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        Search and Filter <span class="gradient-text">Issues</span>
+                    </h2>
+                    <p class="section-description">
+                        Easily find issues by location, category, or status to stay informed about your community.
+                    </p>
+                </div>
+                <div class="search-container">
+                    <div class="search-grid">
+                        <div class="search-field">
+                            <label for="search-title">Search by Title</label>
+                            <input type="text" id="search-title" placeholder="e.g., Pothole, Trash Pickup">
+                        </div>
+                        <div class="search-field">
+                            <label for="search-category">Category</label>
+                            <select id="search-category">
+                                <option value="">All Categories</option>
+                                <option value="potholes">Potholes</option>
+                                <option value="garbage">Garbage</option>
+                                <option value="drainage">Drainage</option>
+                                <option value="streetlights">Streetlights</option>
+                                <option value="water-leakage">Water Leakage</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="search-field">
+                            <label for="search-area">Area</label>
+                            <input type="text" id="search-area" placeholder="e.g., Downtown, Main Street">
+                        </div>
+                        <div class="search-field">
+                            <label for="search-date">Date Posted</label>
+                            <input type="date" id="search-date">
+                        </div>
+                        <button class="btn btn-primary search-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="completed-issues" class="card-gallery-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Recently <span class="gradient-text">Completed Issues</span></h2>
+                    <p class="section-description">A showcase of the latest issues to be resolved by our dedicated city staff.</p>
+                </div>
+                <div class="row row-cols-1 row-cols-md-3 g-4" id="issue-cards-container">
+                    <div class="col" data-title="Potholes Repaired" data-category="potholes" data-area="Main Street" data-date="2025-08-29">
+                        <div class="card card-gallery">
+                            <img src="./drpothole-left-3.jpg" height="250px" class="card-img-top" alt="Pothole repair before and after">
+                            <div class="card-body">
+                                <h5 class="card-title">Potholes Repaired</h5>
+                                <p class="card-text">A series of potholes on Main Street were successfully filled and the road surface was made safe for commuters.</p>
+                                <p class="card-text-meta"><strong>Category:</strong> Infrastructure | <strong>Area:</strong> Main Street | <strong>Date:</strong> 2025-08-29</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" data-title="Trash Pickup Completed" data-category="garbage" data-area="Central Park" data-date="2025-08-28">
+                        <div class="card card-gallery">
+                            <img src="./trash-pickup-baltimore-before-after-01-600x404.jpg" height="250px" class="card-img-top" alt="Trash pickup before and after">
+                            <div class="card-body">
+                                <h5 class="card-title">Trash Pickup Completed</h5>
+                                <p class="card-text">A large accumulation of garbage in the park was cleared, restoring the area for public use and recreation.This is been responded within 2hrs of time</p>
+                                <p class="card-text-meta"><strong>Category:</strong> Sanitation | <strong>Area:</strong> Central Park | <strong>Date:</strong> 2025-08-28</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" data-title="Lake Clearage" data-category="environment" data-area="City Lake" data-date="2025-08-27">
+                        <div class="card card-gallery">
+                            <img src="./lake clearage.webp" height="250px" class="card-img-top" alt="Lake clearage before and after">
+                            <div class="card-body">
+                                <h5 class="card-title">Lake Clearage</h5>
+                                <p class="card-text">Algae and debris were removed from the city lake, significantly improving water quality and visual aesthetics.</p>
+                                <p class="card-text-meta"><strong>Category:</strong> Environment | <strong>Area:</strong> City Lake | <strong>Date:</strong> 2025-08-27</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" data-title="Water Leakage Fixed" data-category="water-leakage" data-area="Downtown District" data-date="2025-08-26">
+                        <div class="card card-gallery">
+                            <img src="./water leakage.jpg" height="250px" class="card-img-top" alt="Water leakage repair before and after">
+                            <div class="card-body">
+                                <h5 class="card-title">Water Leakage Fixed</h5>
+                                <p class="card-text">A significant water leak from a broken pipe was promptly located and repaired, conserving water and preventing road damage.</p>
+                                <p class="card-text-meta"><strong>Category:</strong> Utilities | <strong>Area:</strong> Downtown District | <strong>Date:</strong> 2025-08-26</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 10c0 6-1 8-8 8s-8-2-8-8 1-8 8-8 8 2 8 8z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <span class="logo-text">Civic Report</span>
+                    </div>
+                    <p class="footer-description">
+                        Building cleaner, greener cities through transparent civic issue reporting 
+                        and resolution. Together, we make our communities better.
+                    </p>
+                    <a href="index.html" class="btn btn-secondary btn-sm">
+                        Learn More 
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M7 17L17 7"/>
+                            <path d="M7 7h10v10"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="report-issue.html">Report Issue</a></li>
+                        <li><a href="#search">Search Issues</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="admin-login.html">Admin Login</a></li>
+                        <li><a href="#help">Help Center</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">Contact Information</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            <div>
+                                <div class="contact-label">Municipal Office</div>
+                                <div class="contact-value">City Hall, Main Street<br>Downtown District</div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            <a href="mailto:support@civicreport.com" class="contact-value">support@civicreport.com</a>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                            <a href="tel:+911234567890" class="contact-value">+91-1234567890</a>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                            <div>
+                                <div class="contact-label">Helpline Hours</div>
+                                <div class="contact-value">24/7 Online Support<br>Mon-Fri: 9 AM - 6 PM</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2025 Civic Issue Reporting System. All rights reserved.
+                </div>
+                <div class="footer-tagline">
+                    Built with ❤️ for cleaner, greener cities
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="Gallery.js"></script>
+</body>
+</html>
