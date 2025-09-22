@@ -222,41 +222,59 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function authenticateUser(username, password) {
-        // Simulate network delay
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                // Demo credentials (replace with actual authentication logic)
-                const validCredentials = [
-                    { username: 'admin@municipal.gov', password: 'admin123' },
-                    { username: 'admin', password: 'admin123' },
-                    { username: 'authority@city.gov', password: 'authority123' },
-                    { username: 'officer@municipal.gov', password: 'officer123' }
-                ];
-                
-                const isValid = validCredentials.some(cred => 
-                    (cred.username === username || cred.username === username) && 
-                    cred.password === password
-                );
-                
-                if (isValid) {
-                    resolve({
-                        success: true,
-                        message: 'Authentication successful',
-                        user: {
-                            username: username,
-                            role: 'administrator',
-                            permissions: ['view_issues', 'manage_issues', 'update_status', 'view_reports']
-                        }
-                    });
-                } else {
-                    resolve({
-                        success: false,
-                        message: 'Invalid username or password'
-                    });
-                }
-            }, 1500);
-        });
+    async function authenticateUser(username, password) {
+        try {
+            // Try to login with backend API
+            const result = await login(username, password);
+            
+            if (result.token) {
+                return {
+                    success: true,
+                    message: 'Authentication successful',
+                    user: {
+                        username: result.user.username,
+                        email: result.user.email,
+                        role: 'administrator',
+                        permissions: ['view_issues', 'manage_issues', 'update_status', 'view_reports']
+                    }
+                };
+            } else {
+                return {
+                    success: false,
+                    message: result.message || 'Invalid username or password'
+                };
+            }
+        } catch (error) {
+            // Fallback to demo credentials if backend is not available
+            const validCredentials = [
+                { username: 'admin@municipal.gov', password: 'admin123' },
+                { username: 'admin', password: 'admin123' },
+                { username: 'authority@city.gov', password: 'authority123' },
+                { username: 'officer@municipal.gov', password: 'officer123' }
+            ];
+            
+            const isValid = validCredentials.some(cred => 
+                (cred.username === username || cred.username === username) && 
+                cred.password === password
+            );
+            
+            if (isValid) {
+                return {
+                    success: true,
+                    message: 'Authentication successful (demo mode)',
+                    user: {
+                        username: username,
+                        role: 'administrator',
+                        permissions: ['view_issues', 'manage_issues', 'update_status', 'view_reports']
+                    }
+                };
+            } else {
+                return {
+                    success: false,
+                    message: 'Invalid username or password'
+                };
+            }
+        }
     }
 
     function setLoginLoading(loading) {

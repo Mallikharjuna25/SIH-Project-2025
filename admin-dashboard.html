@@ -3,172 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Civic Issue Reporting System</title>
+    <title>Admin Dashboard - Civic Issue Management</title>
     <link rel="stylesheet" href="admin-dashboard-styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <!-- Sidebar Navigation -->
-    <nav class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <div class="logo">
-                <div class="logo-icon">
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <div class="logo">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                     </svg>
+                    <span>Admin Dashboard</span>
                 </div>
-                <span class="logo-text">Civic Admin</span>
-            </div>
-            <button class="sidebar-toggle" id="sidebarToggle">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="3" y1="6" x2="21" y2="6"/>
-                    <line x1="3" y1="12" x2="21" y2="12"/>
-                    <line x1="3" y1="18" x2="21" y2="18"/>
-                </svg>
-            </button>
-        </div>
-
-        <div class="sidebar-menu">
-            <ul class="menu-list">
-                <li class="menu-item active" data-section="dashboard">
-                    <a href="#dashboard" class="menu-link">
-                        <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="3" width="7" height="7"/>
-                            <rect x="14" y="3" width="7" height="7"/>
-                            <rect x="14" y="14" width="7" height="7"/>
-                            <rect x="3" y="14" width="7" height="7"/>
-                        </svg>
-                        <span class="menu-text">Dashboard</span>
-                    </a>
-                </li>
-                <li class="menu-item" data-section="issues">
-                    <a href="#issues" class="menu-link">
-                        <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                            <polyline points="14,2 14,8 20,8"/>
-                            <line x1="16" y1="13" x2="8" y2="13"/>
-                            <line x1="16" y1="17" x2="8" y2="17"/>
-                            <polyline points="10,9 9,9 8,9"/>
-                        </svg>
-                        <span class="menu-text">Issues</span>
-                        <span class="menu-badge" id="issuesBadge">0</span>
-                    </a>
-                </li>
-                <li class="menu-item" data-section="users">
-                    <a href="#users" class="menu-link">
-                        <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                            <circle cx="9" cy="7" r="4"/>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                        </svg>
-                        <span class="menu-text">Users</span>
-                    </a>
-                </li>
-                <li class="menu-item" data-section="settings">
-                    <a href="#settings" class="menu-link">
-                        <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="3"/>
-                            <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"/>
-                        </svg>
-                        <span class="menu-text">Settings</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="sidebar-footer">
-            <div class="admin-info">
-                <div class="admin-avatar">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                        <circle cx="12" cy="7" r="4"/>
-                    </svg>
-                </div>
-                <div class="admin-details">
-                    <span class="admin-name">Administrator</span>
-                    <span class="admin-role">System Admin</span>
-                </div>
-            </div>
-            <a href="admin-login.html" class="logout-btn">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                    <polyline points="16,17 21,12 16,7"/>
-                    <line x1="21" y1="12" x2="9" y2="12"/>
-                </svg>
-                Logout
-            </a>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main class="main-content" id="mainContent">
-        <!-- Top Header -->
-        <header class="top-header">
-            <div class="header-left">
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="3" y1="6" x2="21" y2="6"/>
-                        <line x1="3" y1="12" x2="21" y2="12"/>
-                        <line x1="3" y1="18" x2="21" y2="18"/>
-                    </svg>
-                </button>
-                <h1 class="page-title" id="pageTitle">Dashboard</h1>
             </div>
             <div class="header-right">
-                <div class="search-container">
-                    <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="11" cy="11" r="8"/>
-                        <path d="M21 21l-4.35-4.35"/>
-                    </svg>
-                    <input type="text" id="globalSearch" class="search-input" placeholder="Search issues, users...">
-                </div>
-                <div class="notifications">
-                    <button class="notification-btn" id="notificationBtn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
-                            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-                        </svg>
-                        <span class="notification-badge">3</span>
-                    </button>
+                <div class="user-info">
+                    <span id="adminName">Administrator</span>
+                    <button class="logout-btn" onclick="logout()">Logout</button>
                 </div>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <!-- Dashboard Section -->
-        <section class="content-section active" id="dashboardSection">
-            <!-- Statistics Cards -->
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Dashboard Stats -->
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-icon total">
+                    <div class="stat-icon primary">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                             <polyline points="14,2 14,8 20,8"/>
-                            <line x1="16" y1="13" x2="8" y2="13"/>
-                            <line x1="16" y1="17" x2="8" y2="17"/>
                         </svg>
                     </div>
-                    <div class="stat-content">
-                        <div class="stat-number" id="totalIssues">250</div>
+                    <div class="stat-info">
+                        <div class="stat-number" id="totalIssues">0</div>
                         <div class="stat-label">Total Issues</div>
-                        <div class="stat-change positive">+12% from last month</div>
                     </div>
                 </div>
 
                 <div class="stat-card">
-                    <div class="stat-icon pending">
+                    <div class="stat-icon warning">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="10"/>
                             <polyline points="12,6 12,12 16,14"/>
                         </svg>
                     </div>
-                    <div class="stat-content">
-                        <div class="stat-number" id="pendingIssues">75</div>
-                        <div class="stat-label">Pending Issues</div>
-                        <div class="stat-change negative">+5% from last week</div>
+                    <div class="stat-info">
+                        <div class="stat-number" id="pendingIssues">0</div>
+                        <div class="stat-label">Pending</div>
                     </div>
                 </div>
 
@@ -176,271 +65,368 @@
                     <div class="stat-icon progress">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
-                            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
                         </svg>
                     </div>
-                    <div class="stat-content">
-                        <div class="stat-number" id="progressIssues">50</div>
+                    <div class="stat-info">
+                        <div class="stat-number" id="inProgressIssues">0</div>
                         <div class="stat-label">In Progress</div>
-                        <div class="stat-change positive">+8% from last week</div>
                     </div>
                 </div>
 
                 <div class="stat-card">
-                    <div class="stat-icon resolved">
+                    <div class="stat-icon success">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
                             <polyline points="22,4 12,14.01 9,11.01"/>
                         </svg>
                     </div>
-                    <div class="stat-content">
-                        <div class="stat-number" id="resolvedIssues">125</div>
-                        <div class="stat-label">Resolved Issues</div>
-                        <div class="stat-change positive">+15% from last month</div>
+                    <div class="stat-info">
+                        <div class="stat-number" id="resolvedIssues">0</div>
+                        <div class="stat-label">Resolved</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Charts Section -->
-            <div class="charts-grid">
-                <div class="chart-card">
-                    <div class="chart-header">
-                        <h3 class="chart-title">Issues by Status</h3>
-                        <div class="chart-actions">
-                            <button class="chart-btn active" data-period="week">Week</button>
-                            <button class="chart-btn" data-period="month">Month</button>
-                            <button class="chart-btn" data-period="year">Year</button>
-                        </div>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="statusChart"></canvas>
-                    </div>
-                </div>
-
-                <div class="chart-card">
-                    <div class="chart-header">
-                        <h3 class="chart-title">Issues Over Time</h3>
-                        <div class="chart-actions">
-                            <button class="chart-btn active" data-type="reported">Reported</button>
-                            <button class="chart-btn" data-type="resolved">Resolved</button>
-                        </div>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="timeChart"></canvas>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Recent Issues -->
-            <div class="recent-issues">
+            <!-- Issues Table -->
+            <div class="issues-section">
                 <div class="section-header">
-                    <h3 class="section-title">Recent Issues</h3>
-                    <a href="#issues" class="view-all-link">View All</a>
-                </div>
-                <div class="recent-list" id="recentIssuesList">
-                    <!-- Recent issues will be loaded here -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Issues Section -->
-        <section class="content-section" id="issuesSection">
-            <div class="section-header">
-                <h2 class="section-title">All Issues</h2>
-                <div class="section-actions">
-                    <div class="filters">
-                        <select id="statusFilter" class="filter-select">
-                            <option value="">All Statuses</option>
-                            <option value="pending">Pending</option>
-                            <option value="in-progress">In Progress</option>
-                            <option value="resolved">Resolved</option>
-                        </select>
-                        <select id="departmentFilter" class="filter-select">
-                            <option value="">All Departments</option>
-                            <option value="sanitation">Sanitation</option>
-                            <option value="roads">Roads</option>
-                            <option value="water">Water Supply</option>
-                            <option value="electricity">Electricity</option>
-                            <option value="parks">Parks & Recreation</option>
-                        </select>
-                    </div>
-                    <button class="btn btn-primary" id="exportBtn">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                            <polyline points="7,10 12,15 17,10"/>
-                            <line x1="12" y1="15" x2="12" y2="3"/>
+                    <h2>Recent Issues</h2>
+                    <button class="refresh-btn" onclick="loadIssues()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="23,4 23,10 17,10"/>
+                            <polyline points="1,20 1,14 7,14"/>
+                            <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
                         </svg>
-                        Export
+                        Refresh
                     </button>
                 </div>
-            </div>
 
-            <div class="issues-table-container">
-                <table class="issues-table" id="issuesTable">
-                    <thead>
-                        <tr>
-                            <th>Issue ID</th>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Location</th>
-                            <th>Date Reported</th>
-                            <th>Citizen</th>
-                            <th>Status</th>
-                            <th>Assigned To</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="issuesTableBody">
-                        <!-- Issues will be loaded here -->
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Pagination -->
-            <div class="pagination" id="pagination">
-                <!-- Pagination will be generated here -->
-            </div>
-        </section>
-
-        <!-- Users Section -->
-        <section class="content-section" id="usersSection">
-            <div class="section-header">
-                <h2 class="section-title">User Management</h2>
-                <button class="btn btn-primary">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                        <circle cx="8.5" cy="7" r="4"/>
-                        <path d="M20 8v6"/>
-                        <path d="M23 11h-6"/>
-                    </svg>
-                    Add User
-                </button>
-            </div>
-            <div class="coming-soon">
-                <div class="coming-soon-icon">
-                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                        <circle cx="9" cy="7" r="4"/>
-                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                    </svg>
+                <div class="table-container">
+                    <table class="issues-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Reporter</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="issuesTableBody">
+                            <!-- Issues will be loaded here -->
+                        </tbody>
+                    </table>
                 </div>
-                <h3>User Management</h3>
-                <p>User management features will be available soon.</p>
             </div>
-        </section>
-
-        <!-- Settings Section -->
-        <section class="content-section" id="settingsSection">
-            <div class="section-header">
-                <h2 class="section-title">Settings</h2>
-            </div>
-            <div class="coming-soon">
-                <div class="coming-soon-icon">
-                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="3"/>
-                        <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"/>
-                    </svg>
-                </div>
-                <h3>System Settings</h3>
-                <p>System settings and preferences will be available soon.</p>
-            </div>
-        </section>
+        </div>
     </main>
 
-    <!-- Issue Detail Modal -->
-    <div id="issueDetailModal" class="modal hidden">
-        <div class="modal-content modal-large">
-            <div class="modal-header">
-                <h3 class="modal-title">Issue Details</h3>
-                <button class="modal-close" id="issueModalClose">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18"/>
-                        <line x1="6" y1="6" x2="18" y2="18"/>
-                    </svg>
-                </button>
-            </div>
-            <div class="modal-body" id="issueModalBody">
-                <!-- Issue details will be loaded here -->
-            </div>
-        </div>
-    </div>
+    <script src="api.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            if (!getToken()) {
+                window.location.href = 'admin-login.html';
+                return;
+            }
 
-    <!-- Update Status Modal -->
-    <div id="updateStatusModal" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Update Issue Status</h3>
-                <button class="modal-close" id="statusModalClose">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18"/>
-                        <line x1="6" y1="6" x2="18" y2="18"/>
-                    </svg>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="updateStatusForm">
-                    <div class="form-group">
-                        <label for="newStatus" class="form-label">New Status</label>
-                        <select id="newStatus" name="newStatus" class="form-select" required>
-                            <option value="">Select Status</option>
-                            <option value="pending">Pending</option>
-                            <option value="in-progress">In Progress</option>
-                            <option value="resolved">Resolved</option>
+            loadDashboard();
+        });
+
+        async function loadDashboard() {
+            try {
+                const posts = await getPosts();
+                
+                // Convert posts to issues and update stats
+                const issues = posts.map((post, index) => ({
+                    id: `ISS-${1000 + index}`,
+                    title: post.title,
+                    content: post.content,
+                    reporter: post.author?.username || 'Anonymous',
+                    date: post.createdAt ? new Date(post.createdAt).toLocaleDateString() : new Date().toLocaleDateString(),
+                    status: getRandomStatus()
+                }));
+
+                updateStats(issues);
+                displayIssues(issues);
+                
+            } catch (error) {
+                console.error('Failed to load dashboard:', error);
+                showNotification('Failed to load dashboard data', 'error');
+            }
+        }
+
+        function updateStats(issues) {
+            const total = issues.length;
+            const pending = issues.filter(i => i.status === 'pending').length;
+            const inProgress = issues.filter(i => i.status === 'in-progress').length;
+            const resolved = issues.filter(i => i.status === 'resolved').length;
+
+            document.getElementById('totalIssues').textContent = total;
+            document.getElementById('pendingIssues').textContent = pending;
+            document.getElementById('inProgressIssues').textContent = inProgress;
+            document.getElementById('resolvedIssues').textContent = resolved;
+        }
+
+        function displayIssues(issues) {
+            const tbody = document.getElementById('issuesTableBody');
+            tbody.innerHTML = '';
+
+            issues.slice(0, 10).forEach(issue => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${issue.id}</td>
+                    <td>${issue.title}</td>
+                    <td>${issue.reporter}</td>
+                    <td>${issue.date}</td>
+                    <td><span class="status ${issue.status}">${formatStatus(issue.status)}</span></td>
+                    <td>
+                        <select onchange="updateStatus('${issue.id}', this.value)" class="status-select">
+                            <option value="pending" ${issue.status === 'pending' ? 'selected' : ''}>Pending</option>
+                            <option value="in-progress" ${issue.status === 'in-progress' ? 'selected' : ''}>In Progress</option>
+                            <option value="resolved" ${issue.status === 'resolved' ? 'selected' : ''}>Resolved</option>
                         </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="statusComment" class="form-label">Comment (Optional)</label>
-                        <textarea id="statusComment" name="statusComment" class="form-textarea" rows="3" placeholder="Add a comment about this status update..."></textarea>
-                    </div>
-                    <div class="modal-actions">
-                        <button type="button" class="btn btn-outline" onclick="closeUpdateStatusModal()">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Update Status</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
 
-    <!-- Assign Department Modal -->
-    <div id="assignDepartmentModal" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Assign to Department</h3>
-                <button class="modal-close" id="assignModalClose">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18"/>
-                        <line x1="6" y1="6" x2="18" y2="18"/>
-                    </svg>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="assignDepartmentForm">
-                    <div class="form-group">
-                        <label for="department" class="form-label">Department</label>
-                        <select id="department" name="department" class="form-select" required>
-                            <option value="">Select Department</option>
-                            <option value="sanitation">Sanitation Department</option>
-                            <option value="roads">Roads & Infrastructure</option>
-                            <option value="water">Water Supply Department</option>
-                            <option value="electricity">Electricity Department</option>
-                            <option value="parks">Parks & Recreation</option>
-                            <option value="general">General Administration</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="assignComment" class="form-label">Assignment Notes</label>
-                        <textarea id="assignComment" name="assignComment" class="form-textarea" rows="3" placeholder="Add notes for the assigned department..."></textarea>
-                    </div>
-                    <div class="modal-actions">
-                        <button type="button" class="btn btn-outline" onclick="closeAssignDepartmentModal()">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Assign Department</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+        function getRandomStatus() {
+            const statuses = ['pending', 'in-progress', 'resolved'];
+            return statuses[Math.floor(Math.random() * statuses.length)];
+        }
 
-    <script src="admin-dashboard-script.js"></script>
+        function formatStatus(status) {
+            const statusMap = {
+                'pending': 'Pending',
+                'in-progress': 'In Progress',
+                'resolved': 'Resolved'
+            };
+            return statusMap[status] || status;
+        }
+
+        function updateStatus(issueId, newStatus) {
+            showNotification(`Issue ${issueId} status updated to ${formatStatus(newStatus)}`, 'success');
+        }
+
+        function loadIssues() {
+            loadDashboard();
+        }
+
+        function logout() {
+            removeToken();
+            window.location.href = 'admin-login.html';
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 12px 20px;
+                background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
+                color: white;
+                border-radius: 8px;
+                z-index: 1000;
+                animation: slideIn 0.3s ease;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+    </script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+        }
+
+        .header {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 1rem 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 1.125rem;
+        }
+
+        .logo svg {
+            color: #059669;
+        }
+
+        .logout-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        .logout-btn:hover {
+            background: #dc2626;
+        }
+
+        .main-content {
+            padding: 2rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-icon.primary { background: #dbeafe; color: #1d4ed8; }
+        .stat-icon.warning { background: #fef3c7; color: #d97706; }
+        .stat-icon.progress { background: #e0e7ff; color: #6366f1; }
+        .stat-icon.success { background: #d1fae5; color: #059669; }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        .issues-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .section-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-header h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .refresh-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #059669;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        .refresh-btn:hover {
+            background: #047857;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        .issues-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .issues-table th,
+        .issues-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .issues-table th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .status.pending { background: #fef3c7; color: #d97706; }
+        .status.in-progress { background: #e0e7ff; color: #6366f1; }
+        .status.resolved { background: #d1fae5; color: #059669; }
+
+        .status-select {
+            padding: 0.25rem 0.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 0.875rem;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    </style>
 </body>
 </html>

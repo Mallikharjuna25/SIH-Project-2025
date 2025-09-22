@@ -708,6 +708,24 @@
         </div>
     </footer>
 
+    <script src="api.js"></script>
     <script src="script.js"></script>
+    
+    <!-- Test API Connection -->
+    <script>
+        // Test API connection when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add test button to hero section
+            const heroButtons = document.querySelector('.hero-buttons');
+            if (heroButtons) {
+                const testButton = document.createElement('button');
+                testButton.className = 'btn btn-secondary btn-sm';
+                testButton.innerHTML = 'Test Backend Connection';
+                testButton.onclick = testAPI;
+                testButton.style.marginTop = '10px';
+                heroButtons.appendChild(testButton);
+            }
+        });
+    </script>
   </body>
 </html>

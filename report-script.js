@@ -414,19 +414,27 @@ document.addEventListener('DOMContentLoaded', function() {
         setSubmitLoading(true);
         
         try {
-            // Create form data
-            const formData = new FormData(form);
+            // Check if user is logged in
+            if (!getToken()) {
+                // Auto-register user with form data
+                const signupResult = await signup(
+                    reporterName.value.trim(),
+                    reporterEmail.value.trim() || `user${Date.now()}@temp.com`,
+                    'defaultpass123'
+                );
+                
+                if (!signupResult.token) {
+                    throw new Error('Failed to create user account');
+                }
+            }
             
-            // Add timestamp
-            formData.append('submittedAt', new Date().toISOString());
+            // Create post with issue details
+            const title = issueTitle.value.trim();
+            const content = `${issueDescription.value.trim()}\n\nLocation: ${issueLocation.value.trim()}\nReporter: ${reporterName.value.trim()}\nContact: ${reporterEmail.value.trim() || reporterPhone.value.trim()}`;
             
-            // Add user agent info
-            formData.append('userAgent', navigator.userAgent);
+            const response = await createPost(title, content);
             
-            // Simulate API call (replace with actual API endpoint)
-            const response = await simulateApiCall(formData);
-            
-            if (response.success) {
+            if (response._id) {
                 // Show success modal
                 showSuccessModal();
                 

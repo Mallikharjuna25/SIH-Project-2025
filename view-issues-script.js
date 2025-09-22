@@ -26,8 +26,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const issueDetailModal = document.getElementById('issueDetailModal');
     const confirmationModal = document.getElementById('confirmationModal');
     
-    // Sample data - In a real application, this would come from an API
-    let allIssues = [
+    // Data will be loaded from backend API
+    let allIssues = [];
+    
+    // Sample data for fallback
+    let sampleIssues = [
         {
             id: 'ISS-1021',
             title: 'Broken Streetlight',
@@ -178,14 +181,64 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add event listeners
         addEventListeners();
         
-        // Load initial data
-        loadIssues();
-        updateStatistics();
+        // Load data from backend
+        loadIssuesFromBackend();
         
         // Set initial view
         setView('card');
         
         console.log('View Issues page initialized successfully!');
+    }
+    
+    async function loadIssuesFromBackend() {
+        try {
+            const posts = await getPosts();
+            
+            // Convert posts to issues format
+            allIssues = posts.map((post, index) => ({
+                id: `ISS-${1000 + index}`,
+                title: post.title,
+                description: post.content,
+                location: extractLocation(post.content),
+                dateReported: post.createdAt ? post.createdAt.split('T')[0] : new Date().toISOString().split('T')[0],
+                status: getRandomStatus(),
+                citizen: post.author?.username || 'Anonymous',
+                photo: null,
+                assignedTo: getRandomDepartment(),
+                comments: [{
+                    date: post.createdAt ? post.createdAt.split('T')[0] : new Date().toISOString().split('T')[0],
+                    status: 'pending',
+                    comment: 'Issue reported by citizen'
+                }]
+            }));
+            
+            filteredIssues = [...allIssues];
+            loadIssues();
+            updateStatistics();
+            
+        } catch (error) {
+            console.error('Failed to load issues from backend:', error);
+            // Use sample data as fallback
+            allIssues = [...sampleIssues];
+            filteredIssues = [...allIssues];
+            loadIssues();
+            updateStatistics();
+        }
+    }
+    
+    function extractLocation(content) {
+        const locationMatch = content.match(/Location: ([^\n]+)/);
+        return locationMatch ? locationMatch[1] : 'Location not specified';
+    }
+    
+    function getRandomStatus() {
+        const statuses = ['pending', 'in-progress', 'resolved'];
+        return statuses[Math.floor(Math.random() * statuses.length)];
+    }
+    
+    function getRandomDepartment() {
+        const departments = ['Public Works', 'Sanitation Department', 'Roads Department', 'Water Department', 'Electricity Department'];
+        return departments[Math.floor(Math.random() * departments.length)];
     }
 
     function addEventListeners() {
