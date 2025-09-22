@@ -56,11 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
             card.style.animationDelay = `${index * 0.1}s`;
         });
 
-        const teamMembers = document.querySelectorAll('.team-member');
-        teamMembers.forEach((member, index) => {
-            member.style.animationDelay = `${index * 0.15}s`;
-        });
-
         const impactCards = document.querySelectorAll('.impact-card');
         impactCards.forEach((card, index) => {
             card.style.animationDelay = `${index * 0.1}s`;
@@ -69,11 +64,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const valueCards = document.querySelectorAll('.value-card');
         valueCards.forEach((card, index) => {
             card.style.animationDelay = `${index * 0.1}s`;
-        });
-
-        const timelineItems = document.querySelectorAll('.timeline-item');
-        timelineItems.forEach((item, index) => {
-            item.style.animationDelay = `${index * 0.2}s`;
         });
     }
 
@@ -155,35 +145,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Observe elements for animation
         const animateElements = document.querySelectorAll(
-            '.mission-card, .team-member, .impact-card, .value-card, .timeline-item'
+            '.mission-card, .impact-card, .value-card'
         );
         
         animateElements.forEach(element => {
             observer.observe(element);
         });
     }
-
-    // Add hover effects to team member social links
-    function initializeTeamMemberInteractions() {
-        const teamMembers = document.querySelectorAll('.team-member');
-        
-        teamMembers.forEach(member => {
-            const socialLinks = member.querySelectorAll('.social-link');
-            
-            socialLinks.forEach(link => {
-                link.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-3px) scale(1.1)';
-                });
-                
-                link.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0) scale(1)';
-                });
-            });
-        });
-    }
-
-    // Initialize team member interactions
-    initializeTeamMemberInteractions();
 
     // Add parallax effect to hero section (subtle)
     function initializeParallax() {
@@ -227,32 +195,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Uncomment to enable typing effect
     // initializeTypingEffect();
-
-    // Add smooth reveal animation for timeline items
-    function initializeTimelineAnimations() {
-        const timelineItems = document.querySelectorAll('.timeline-item');
-        
-        const timelineObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateX(0)';
-                    }, index * 200);
-                }
-            });
-        }, { threshold: 0.3 });
-
-        timelineItems.forEach((item, index) => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateX(-30px)';
-            item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            timelineObserver.observe(item);
-        });
-    }
-
-    // Initialize timeline animations
-    initializeTimelineAnimations();
 
     // Add interactive hover effects to impact cards
     function initializeImpactCardInteractions() {
@@ -414,26 +356,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Add escape key functionality here if needed
                 console.log('Escape key pressed');
             }
-            
-            // Arrow keys for timeline navigation
-            if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-                const timelineItems = document.querySelectorAll('.timeline-item');
-                const focusedItem = document.activeElement.closest('.timeline-item');
-                
-                if (focusedItem) {
-                    e.preventDefault();
-                    const currentIndex = Array.from(timelineItems).indexOf(focusedItem);
-                    let nextIndex;
-                    
-                    if (e.key === 'ArrowDown') {
-                        nextIndex = Math.min(currentIndex + 1, timelineItems.length - 1);
-                    } else {
-                        nextIndex = Math.max(currentIndex - 1, 0);
-                    }
-                    
-                    timelineItems[nextIndex].focus();
-                }
-            }
         });
     }
 
@@ -519,4 +441,3 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize print optimization
     initializePrintOptimization();
 });
-
