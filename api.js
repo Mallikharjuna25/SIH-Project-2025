@@ -1,5 +1,5 @@
 // API Integration for SIH Project
-const API_BASE = 'http://localhost:3001/api';
+const API_BASE = window.SERVER_CONFIG ? window.SERVER_CONFIG.API_BASE : 'http://localhost:3001/api';
 
 // Get JWT token from localStorage
 function getToken() {
