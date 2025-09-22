@@ -30,146 +30,154 @@ document.addEventListener('DOMContentLoaded', function() {
     let allIssues = [];
     
     // Sample data for fallback
-    let sampleIssues = [
-        {
-            id: 'ISS-1021',
-            title: 'Broken Streetlight',
-            description: 'Streetlight on Main Street is not working, making the area unsafe at night. This has been an issue for over a week now.',
-            location: 'Main Street, Downtown',
-            dateReported: '2025-01-15',
-            status: 'in-progress',
-            citizen: 'John Doe',
-            photo: null,
-            assignedTo: 'Electricity Department',
-            comments: [
-                {
-                    date: '2025-01-15',
-                    status: 'pending',
-                    comment: 'Issue reported by citizen'
-                },
-                {
-                    date: '2025-01-16',
-                    status: 'in-progress',
-                    comment: 'Assigned to electricity department for repair'
-                }
-            ]
-        },
-        {
-            id: 'ISS-1022',
-            title: 'Garbage Not Collected',
-            description: 'Garbage bins on Oak Avenue have not been collected for 3 days. The area is becoming unsanitary.',
-            location: 'Oak Avenue, Residential Area',
-            dateReported: '2025-01-14',
-            status: 'pending',
-            citizen: 'Sarah Johnson',
-            photo: null,
-            assignedTo: 'Sanitation Department',
-            comments: [
-                {
-                    date: '2025-01-14',
-                    status: 'pending',
-                    comment: 'Issue reported by citizen'
-                }
-            ]
-        },
-        {
-            id: 'ISS-1023',
-            title: 'Pothole on Highway',
-            description: 'Large pothole on Highway 101 near exit 15. Dangerous for vehicles and needs immediate attention.',
-            location: 'Highway 101, Exit 15',
-            dateReported: '2025-01-13',
-            status: 'resolved',
-            citizen: 'Mike Chen',
-            photo: null,
-            assignedTo: 'Roads Department',
-            comments: [
-                {
-                    date: '2025-01-13',
-                    status: 'pending',
-                    comment: 'Issue reported by citizen'
-                },
-                {
-                    date: '2025-01-14',
-                    status: 'in-progress',
-                    comment: 'Road crew dispatched for repair'
-                },
-                {
-                    date: '2025-01-15',
-                    status: 'resolved',
-                    comment: 'Pothole repaired and road surface restored'
-                }
-            ]
-        },
-        {
-            id: 'ISS-1024',
-            title: 'Water Leak',
-            description: 'Water leak from main pipe on Elm Street. Water is pooling on the road and causing inconvenience.',
-            location: 'Elm Street, Commercial Area',
-            dateReported: '2025-01-12',
-            status: 'in-progress',
-            citizen: 'Lisa Rodriguez',
-            photo: null,
-            assignedTo: 'Water Department',
-            comments: [
-                {
-                    date: '2025-01-12',
-                    status: 'pending',
-                    comment: 'Issue reported by citizen'
-                },
-                {
-                    date: '2025-01-13',
-                    status: 'in-progress',
-                    comment: 'Water department investigating the leak'
-                }
-            ]
-        },
-        {
-            id: 'ISS-1025',
-            title: 'Damaged Sidewalk',
-            description: 'Cracked and uneven sidewalk on Pine Street near the school. Safety hazard for pedestrians.',
-            location: 'Pine Street, Near School',
-            dateReported: '2025-01-11',
-            status: 'resolved',
-            citizen: 'David Wilson',
-            photo: null,
-            assignedTo: 'Infrastructure Department',
-            comments: [
-                {
-                    date: '2025-01-11',
-                    status: 'pending',
-                    comment: 'Issue reported by citizen'
-                },
-                {
-                    date: '2025-01-12',
-                    status: 'in-progress',
-                    comment: 'Sidewalk repair scheduled'
-                },
-                {
-                    date: '2025-01-14',
-                    status: 'resolved',
-                    comment: 'Sidewalk repaired and made safe'
-                }
-            ]
-        },
-        {
-            id: 'ISS-1026',
-            title: 'Traffic Light Malfunction',
-            description: 'Traffic light at the intersection of 5th Avenue and Broadway is not working properly.',
-            location: '5th Avenue & Broadway Intersection',
-            dateReported: '2025-01-10',
-            status: 'pending',
-            citizen: 'Emily Brown',
-            photo: null,
-            assignedTo: 'Traffic Department',
-            comments: [
-                {
-                    date: '2025-01-10',
-                    status: 'pending',
-                    comment: 'Issue reported by citizen'
-                }
-            ]
-        }
-    ];
+    function getSampleIssues() {
+        return [
+            {
+                id: 'ISS-1021',
+                titleKey: 'brokenStreetlight',
+                title: t('brokenStreetlight') || 'Broken Streetlight',
+                description: 'Streetlight on Main Street is not working, making the area unsafe at night. This has been an issue for over a week now.',
+                location: 'Main Street, Downtown',
+                dateReported: '2025-01-15',
+                status: 'in-progress',
+                citizen: 'John Doe',
+                photo: null,
+                assignedTo: 'Electricity Department',
+                comments: [
+                    {
+                        date: '2025-01-15',
+                        status: 'pending',
+                        comment: 'Issue reported by citizen'
+                    },
+                    {
+                        date: '2025-01-16',
+                        status: 'in-progress',
+                        comment: 'Assigned to electricity department for repair'
+                    }
+                ]
+            },
+            {
+                id: 'ISS-1022',
+                titleKey: 'garbageNotCollected',
+                title: t('garbageNotCollected') || 'Garbage Not Collected',
+                description: 'Garbage bins on Oak Avenue have not been collected for 3 days. The area is becoming unsanitary.',
+                location: 'Oak Avenue, Residential Area',
+                dateReported: '2025-01-14',
+                status: 'pending',
+                citizen: 'Sarah Johnson',
+                photo: null,
+                assignedTo: 'Sanitation Department',
+                comments: [
+                    {
+                        date: '2025-01-14',
+                        status: 'pending',
+                        comment: 'Issue reported by citizen'
+                    }
+                ]
+            },
+            {
+                id: 'ISS-1023',
+                titleKey: 'potholeOnHighway',
+                title: t('potholeOnHighway') || 'Pothole on Highway',
+                description: 'Large pothole on Highway 101 near exit 15. Dangerous for vehicles and needs immediate attention.',
+                location: 'Highway 101, Exit 15',
+                dateReported: '2025-01-13',
+                status: 'resolved',
+                citizen: 'Mike Chen',
+                photo: null,
+                assignedTo: 'Roads Department',
+                comments: [
+                    {
+                        date: '2025-01-13',
+                        status: 'pending',
+                        comment: 'Issue reported by citizen'
+                    },
+                    {
+                        date: '2025-01-14',
+                        status: 'in-progress',
+                        comment: 'Road crew dispatched for repair'
+                    },
+                    {
+                        date: '2025-01-15',
+                        status: 'resolved',
+                        comment: 'Pothole repaired and road surface restored'
+                    }
+                ]
+            },
+            {
+                id: 'ISS-1024',
+                titleKey: 'waterLeak',
+                title: t('waterLeak') || 'Water Leak',
+                description: 'Water leak from main pipe on Elm Street. Water is pooling on the road and causing inconvenience.',
+                location: 'Elm Street, Commercial Area',
+                dateReported: '2025-01-12',
+                status: 'in-progress',
+                citizen: 'Lisa Rodriguez',
+                photo: null,
+                assignedTo: 'Water Department',
+                comments: [
+                    {
+                        date: '2025-01-12',
+                        status: 'pending',
+                        comment: 'Issue reported by citizen'
+                    },
+                    {
+                        date: '2025-01-13',
+                        status: 'in-progress',
+                        comment: 'Water department investigating the leak'
+                    }
+                ]
+            },
+            {
+                id: 'ISS-1025',
+                titleKey: 'damagedSidewalk',
+                title: t('damagedSidewalk') || 'Damaged Sidewalk',
+                description: 'Cracked and uneven sidewalk on Pine Street near the school. Safety hazard for pedestrians.',
+                location: 'Pine Street, Near School',
+                dateReported: '2025-01-11',
+                status: 'resolved',
+                citizen: 'David Wilson',
+                photo: null,
+                assignedTo: 'Infrastructure Department',
+                comments: [
+                    {
+                        date: '2025-01-11',
+                        status: 'pending',
+                        comment: 'Issue reported by citizen'
+                    },
+                    {
+                        date: '2025-01-12',
+                        status: 'in-progress',
+                        comment: 'Sidewalk repair scheduled'
+                    },
+                    {
+                        date: '2025-01-14',
+                        status: 'resolved',
+                        comment: 'Sidewalk repaired and made safe'
+                    }
+                ]
+            },
+            {
+                id: 'ISS-1026',
+                titleKey: 'trafficLightMalfunction',
+                title: t('trafficLightMalfunction') || 'Traffic Light Malfunction',
+                description: 'Traffic light at the intersection of 5th Avenue and Broadway is not working properly.',
+                location: '5th Avenue & Broadway Intersection',
+                dateReported: '2025-01-10',
+                status: 'pending',
+                citizen: 'Emily Brown',
+                photo: null,
+                assignedTo: 'Traffic Department',
+                comments: [
+                    {
+                        date: '2025-01-10',
+                        status: 'pending',
+                        comment: 'Issue reported by citizen'
+                    }
+                ]
+            }
+        ];
+    }
 
     let filteredIssues = [...allIssues];
     let currentView = 'card';
@@ -186,6 +194,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Set initial view
         setView('card');
+        
+        // Listen for language changes
+        document.addEventListener('languageChanged', function() {
+            loadIssues();
+        });
         
         console.log('View Issues page initialized successfully!');
     }
@@ -219,7 +232,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (error) {
             console.error('Failed to load issues from backend:', error);
             // Use sample data as fallback
-            allIssues = [...sampleIssues];
+            allIssues = getSampleIssues();
             filteredIssues = [...allIssues];
             loadIssues();
             updateStatistics();
@@ -381,6 +394,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function loadIssues() {
+        // Update titles with current translations
+        filteredIssues.forEach(issue => {
+            if (issue.titleKey) {
+                issue.title = t(issue.titleKey) || issue.title;
+            }
+        });
+        
         if (filteredIssues.length === 0) {
             showEmptyState();
             return;
@@ -468,7 +488,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <td class="issue-assigned-cell">${issue.assignedTo}</td>
             <td class="issue-actions-cell">
                 <button class="btn btn-sm btn-outline" onclick="event.stopPropagation(); showIssueDetails('${issue.id}')">
-                    View
+                    ${t('viewDetails')}
                 </button>
             </td>
         `;
@@ -625,9 +645,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function formatStatus(status) {
         const statusMap = {
-            'pending': 'Pending',
-            'in-progress': 'In Progress',
-            'resolved': 'Resolved'
+            'pending': t('pending'),
+            'in-progress': t('inProgress'),
+            'resolved': t('resolved')
         };
         return statusMap[status] || status;
     }

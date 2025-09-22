@@ -30,6 +30,36 @@
                 <a href="report-issue.html" class="nav-link" data-translate="reportIssue">Report Issue</a>
                 <a href="view-issues.html" class="nav-link" data-translate="viewIssues">View Issues</a>
                 <a href="contact.html" class="nav-link active" data-translate="contact">Contact</a>
+                
+                <!-- Language Switcher -->
+                <div class="language-switcher">
+                    <button class="language-btn" id="languageBtn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M2 12h20"/>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                        <span id="currentLang">EN</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </button>
+                    <div class="language-dropdown" id="languageDropdown">
+                        <div class="language-option" data-lang="en">
+                            <span class="flag">🇺🇸</span>
+                            <span>English</span>
+                        </div>
+                        <div class="language-option" data-lang="hi">
+                            <span class="flag">🇮🇳</span>
+                            <span>हिंदी</span>
+                        </div>
+                        <div class="language-option" data-lang="te">
+                            <span class="flag">🇮🇳</span>
+                            <span>తెలుగు</span>
+                        </div>
+                    </div>
+                </div>
+                
                 <a href="admin-login.html" class="nav-link" data-translate="adminLogin">Admin Login</a>
             </div>
             
@@ -67,13 +97,13 @@
                         <form class="contact-form" id="contactForm">
                             <div class="form-group">
                                 <label for="name" data-translate="name">Full Name *</label>
-                                <input type="text" id="name" name="name" class="form-input" placeholder="Enter your full name" required>
+                                <input type="text" id="name" name="name" class="form-input" data-translate="enterFullName" placeholder="Enter your full name" required>
                                 <div class="error-message" id="nameError"></div>
                             </div>
                             
                             <div class="form-group">
                                 <label for="email" data-translate="email">Email Address *</label>
-                                <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email address" required>
+                                <input type="email" id="email" name="email" class="form-input" data-translate="enterEmail" placeholder="Enter your email address" required>
                                 <div class="error-message" id="emailError"></div>
                             </div>
                             
@@ -100,7 +130,7 @@
                                 <label class="checkbox-label">
                                     <input type="checkbox" id="newsletter" name="newsletter">
                                     <span class="checkmark"></span>
-                                    Subscribe to our newsletter for updates and announcements
+                                    <span data-translate="subscribeNewsletter">Subscribe to our newsletter for updates and announcements</span>
                                 </label>
                             </div>
                             
@@ -110,7 +140,7 @@
                                     <svg class="loading-spinner" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M21 12a9 9 0 11-6.219-8.56"/>
                                     </svg>
-                                    Sending...
+                                    <span data-translate="sending">Sending...</span>
                                 </span>
                             </button>
                         </form>
@@ -119,8 +149,8 @@
                     <!-- Contact Information -->
                     <div class="contact-info-container">
                         <div class="contact-info-header">
-                            <h2>Get in Touch</h2>
-                            <p>We're here to help you with any questions or concerns</p>
+                            <h2 data-translate="getInTouch">Get in Touch</h2>
+                            <p data-translate="hereToHelp">We're here to help you with any questions or concerns</p>
                         </div>
                         
                         <div class="contact-info-grid">
@@ -133,9 +163,9 @@
                                     </svg>
                                 </div>
                                 <div class="contact-details">
-                                    <h3>Support Email</h3>
+                                    <h3 data-translate="supportEmail">Support Email</h3>
                                     <p>support@civicgreen.com</p>
-                                    <span class="contact-note">We typically respond within 24 hours</span>
+                                    <span class="contact-note" data-translate="respondWithin24">We typically respond within 24 hours</span>
                                 </div>
                             </div>
 
@@ -147,9 +177,9 @@
                                     </svg>
                                 </div>
                                 <div class="contact-details">
-                                    <h3>Phone Support</h3>
+                                    <h3 data-translate="phoneSupport">Phone Support</h3>
                                     <p>+91 7978538331</p>
-                                    <span class="contact-note">Mon-Fri: 9AM-5PM IST</span>
+                                    <span class="contact-note" data-translate="businessHours">Mon-Fri: 9AM-5PM IST</span>
                                 </div>
                             </div>
 
@@ -162,14 +192,14 @@
                                     </svg>
                                 </div>
                                 <div class="contact-details">
-                                    <h3>Office Address</h3>
+                                    <h3 data-translate="officeAddress">Office Address</h3>
                                     <p>
                                         SRKR Engineering College<br>
                                         Chinnamiram, Bhimavaram<br>
                                         West Godavari<br>
                                         Andhra Pradesh, 534204
                                     </p>
-                                    <span class="contact-note">Walk-in hours: Mon-Fri 8AM-4PM</span>
+                                    <span class="contact-note" data-translate="walkInHours">Walk-in hours: Mon-Fri 8AM-4PM</span>
                                 </div>
                             </div>
 
@@ -182,9 +212,9 @@
                                     </svg>
                                 </div>
                                 <div class="contact-details">
-                                    <h3>Emergency Hotline</h3>
+                                    <h3 data-translate="emergencyHotline">Emergency Hotline</h3>
                                     <p>112</p>
-                                    <span class="contact-note">For immediate emergencies only</span>
+                                    <span class="contact-note" data-translate="emergenciesOnly">For immediate emergencies only</span>
                                 </div>
                             </div>
                         </div>
@@ -224,80 +254,80 @@
         <section class="faq-section">
             <div class="container">
                 <div class="faq-header">
-                    <h2>Frequently Asked Questions</h2>
-                    <p>Find answers to common questions about our services</p>
+                    <h2 data-translate="faq">Frequently Asked Questions</h2>
+                    <p data-translate="faqDesc">Find answers to common questions about our services</p>
                 </div>
                 
                 <div class="faq-grid">
                     <div class="faq-item">
                         <button class="faq-question" onclick="toggleFAQ(this)">
-                            <span>How do I report a civic issue?</span>
+                            <span data-translate="faqQ1">How do I report a civic issue?</span>
                             <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="6,9 12,15 18,9"/>
                             </svg>
                         </button>
                         <div class="faq-answer">
-                            <p>You can report civic issues through our online platform by clicking the "Report Issue" button on our homepage. Simply fill out the form with details about the issue, location, and your contact information.</p>
+                            <p data-translate="faqA1">You can report civic issues through our online platform by clicking the "Report Issue" button on our homepage. Simply fill out the form with details about the issue, location, and your contact information.</p>
                         </div>
                     </div>
                     
                     <div class="faq-item">
                         <button class="faq-question" onclick="toggleFAQ(this)">
-                            <span>How long does it take to resolve an issue?</span>
+                            <span data-translate="faqQ2">How long does it take to resolve an issue?</span>
                             <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="6,9 12,15 18,9"/>
                             </svg>
                         </button>
                         <div class="faq-answer">
-                            <p>Resolution times vary depending on the type and complexity of the issue. Simple issues like potholes are typically resolved within 1-2 weeks, while more complex infrastructure issues may take longer. We provide regular updates on the status of your report.</p>
+                            <p data-translate="faqA2">Resolution times vary depending on the type and complexity of the issue. Simple issues like potholes are typically resolved within 1-2 weeks, while more complex infrastructure issues may take longer. We provide regular updates on the status of your report.</p>
                         </div>
                     </div>
                     
                     <div class="faq-item">
                         <button class="faq-question" onclick="toggleFAQ(this)">
-                            <span>Can I track the progress of my report?</span>
+                            <span data-translate="faqQ3">Can I track the progress of my report?</span>
                             <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="6,9 12,15 18,9"/>
                             </svg>
                         </button>
                         <div class="faq-answer">
-                            <p>Yes! You can track the progress of your report by visiting the "View Issues" page on our website. You'll receive a unique issue ID when you submit a report, which you can use to check the current status and any updates.</p>
+                            <p data-translate="faqA3">Yes! You can track the progress of your report by visiting the "View Issues" page on our website. You'll receive a unique issue ID when you submit a report, which you can use to check the current status and any updates.</p>
                         </div>
                     </div>
                     
                     <div class="faq-item">
                         <button class="faq-question" onclick="toggleFAQ(this)">
-                            <span>What types of issues can I report?</span>
+                            <span data-translate="faqQ4">What types of issues can I report?</span>
                             <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="6,9 12,15 18,9"/>
                             </svg>
                         </button>
                         <div class="faq-answer">
-                            <p>You can report various civic issues including road problems (potholes, damaged sidewalks), street lighting issues, garbage collection problems, water leaks, traffic signal malfunctions, and other infrastructure concerns within our jurisdiction.</p>
+                            <p data-translate="faqA4">You can report various civic issues including road problems (potholes, damaged sidewalks), street lighting issues, garbage collection problems, water leaks, traffic signal malfunctions, and other infrastructure concerns within our jurisdiction.</p>
                         </div>
                     </div>
                     
                     <div class="faq-item">
                         <button class="faq-question" onclick="toggleFAQ(this)">
-                            <span>Is there a mobile app available?</span>
+                            <span data-translate="faqQ5">Is there a mobile app available?</span>
                             <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="6,9 12,15 18,9"/>
                             </svg>
                         </button>
                         <div class="faq-answer">
-                            <p>Our website is fully responsive and works great on mobile devices. We're currently developing a dedicated mobile app that will be available for download in the coming months.</p>
+                            <p data-translate="faqA5">Our website is fully responsive and works great on mobile devices. We're currently developing a dedicated mobile app that will be available for download in the coming months.</p>
                         </div>
                     </div>
                     
                     <div class="faq-item">
                         <button class="faq-question" onclick="toggleFAQ(this)">
-                            <span>How can I contact the mayor's office?</span>
+                            <span data-translate="faqQ6">How can I contact the mayor's office?</span>
                             <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="6,9 12,15 18,9"/>
                             </svg>
                         </button>
                         <div class="faq-answer">
-                            <p>For matters requiring the mayor's attention, you can call our main office at +1 (555) 123-4567 or visit our office at 123 Government Plaza during business hours. You can also use the contact form above and select "General Inquiry" as the subject.</p>
+                            <p data-translate="faqA6">For matters requiring the mayor's attention, you can call our main office at +91 7978538331 or visit our office during business hours. You can also use the contact form above and select "General Inquiry" as the subject.</p>
                         </div>
                     </div>
                 </div>
@@ -384,6 +414,7 @@
 
     <script src="config.js"></script>
     <script src="api.js"></script>
+    <script src="languages.js"></script>
     <script src="contact-script.js"></script>
 </body>
 </html>

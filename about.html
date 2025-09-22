@@ -29,6 +29,36 @@
                 <a href="report-issue.html" class="nav-link" data-translate="reportIssue">Report Issue</a>
                 <a href="view-issues.html" class="nav-link" data-translate="viewIssues">View Issues</a>
                 <a href="contact.html" class="nav-link" data-translate="contact">Contact</a>
+                
+                <!-- Language Switcher -->
+                <div class="language-switcher">
+                    <button class="language-btn" id="languageBtn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M2 12h20"/>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                        <span id="currentLang">EN</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </button>
+                    <div class="language-dropdown" id="languageDropdown">
+                        <button class="language-option" data-lang="en">
+                            <span class="lang-flag">🇺🇸</span>
+                            <span class="lang-name">English</span>
+                        </button>
+                        <button class="language-option" data-lang="hi">
+                            <span class="lang-flag">🇮🇳</span>
+                            <span class="lang-name">हिंदी</span>
+                        </button>
+                        <button class="language-option" data-lang="te">
+                            <span class="lang-flag">🇮🇳</span>
+                            <span class="lang-name">తెలుగు</span>
+                        </button>
+                    </div>
+                </div>
+                
                 <a href="admin-login.html" class="nav-link" data-translate="adminLogin">Admin Login</a>
             </div>
             
@@ -92,7 +122,7 @@
                             </svg>
                         </div>
                         <h3 data-translate="ourMission">Our Mission</h3>
-                        <p>To bridge the gap between citizens and local government by providing a transparent, efficient, and user-friendly platform for reporting and tracking civic issues. We believe that every voice matters and every issue deserves attention.</p>
+                        <p data-translate="missionDesc">To bridge the gap between citizens and local government by providing a transparent, efficient, and user-friendly platform for reporting and tracking civic issues. We believe that every voice matters and every issue deserves attention.</p>
                     </div>
                     
                     <div class="mission-card">
@@ -102,7 +132,7 @@
                             </svg>
                         </div>
                         <h3 data-translate="ourVision">Our Vision</h3>
-                        <p>To create a world where every community member can easily report issues, track progress, and contribute to making their neighborhood a better place to live. We envision cities that are more responsive, accountable, and citizen-centric.</p>
+                        <p data-translate="visionDesc">To create a world where every community member can easily report issues, track progress, and contribute to making their neighborhood a better place to live. We envision cities that are more responsive, accountable, and citizen-centric.</p>
                     </div>
                     
                     <div class="mission-card">
@@ -115,7 +145,7 @@
                             </svg>
                         </div>
                         <h3 data-translate="ourValues">Our Values</h3>
-                        <p>Transparency, accountability, efficiency, and community engagement are at the heart of everything we do. We believe in empowering citizens with the tools they need to create positive change in their communities.</p>
+                        <p data-translate="valuesDesc">Transparency, accountability, efficiency, and community engagement are at the heart of everything we do. We believe in empowering citizens with the tools they need to create positive change in their communities.</p>
                     </div>
                 </div>
             </div>
@@ -183,8 +213,8 @@
         <section class="values-section">
             <div class="container">
                 <div class="section-header">
-                    <h2>Our Core Values</h2>
-                    <p>The principles that guide everything we do</p>
+                    <h2 data-translate="ourCoreValues">Our Core Values</h2>
+                    <p data-translate="coreValuesDesc">The principles that guide everything we do</p>
                 </div>
                 
                 <div class="values-grid">
@@ -198,8 +228,8 @@
                                 <path d="M11 12H8a2 2 0 0 0-2 2v1"/>
                             </svg>
                         </div>
-                        <h3>Transparency</h3>
-                        <p>We believe in open communication and clear visibility into the civic issue resolution process. Every citizen deserves to know the status of their concerns.</p>
+                        <h3 data-translate="transparency">Transparency</h3>
+                        <p data-translate="transparencyDesc">We believe in open communication and clear visibility into the civic issue resolution process. Every citizen deserves to know the status of their concerns.</p>
                     </div>
                     
                     <div class="value-card">
@@ -209,8 +239,8 @@
                                 <polyline points="12,6 12,12 16,14"/>
                             </svg>
                         </div>
-                        <h3>Efficiency</h3>
-                        <p>We streamline the civic reporting process, reducing bureaucratic barriers and ensuring faster response times for community issues.</p>
+                        <h3 data-translate="efficiency">Efficiency</h3>
+                        <p data-translate="efficiencyDesc">We streamline the civic reporting process, reducing bureaucratic barriers and ensuring faster response times for community issues.</p>
                     </div>
                     
                     <div class="value-card">
@@ -222,8 +252,8 @@
                                 <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
                             </svg>
                         </div>
-                        <h3>Community</h3>
-                        <p>We foster stronger connections between citizens and their local government, building more engaged and resilient communities.</p>
+                        <h3 data-translate="community">Community</h3>
+                        <p data-translate="communityDesc">We foster stronger connections between citizens and their local government, building more engaged and resilient communities.</p>
                     </div>
                     
                     <div class="value-card">
@@ -232,8 +262,8 @@
                                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                             </svg>
                         </div>
-                        <h3>Innovation</h3>
-                        <p>We continuously improve our platform using the latest technology and user feedback to better serve our communities.</p>
+                        <h3 data-translate="innovation">Innovation</h3>
+                        <p data-translate="innovationDesc">We continuously improve our platform using the latest technology and user feedback to better serve our communities.</p>
                     </div>
                     
                     <div class="value-card">
@@ -243,8 +273,8 @@
                                 <polyline points="22,4 12,14.01 9,11.01"/>
                             </svg>
                         </div>
-                        <h3>Accountability</h3>
-                        <p>We hold ourselves and our municipal partners to the highest standards, ensuring every reported issue receives proper attention and resolution.</p>
+                        <h3 data-translate="accountability">Accountability</h3>
+                        <p data-translate="accountabilityDesc">We hold ourselves and our municipal partners to the highest standards, ensuring every reported issue receives proper attention and resolution.</p>
                     </div>
                     
                     <div class="value-card">
@@ -254,8 +284,8 @@
                                 <circle cx="12" cy="10" r="3"/>
                             </svg>
                         </div>
-                        <h3>Accessibility</h3>
-                        <p>We ensure our platform is accessible to all citizens, regardless of their technical expertise or physical abilities.</p>
+                        <h3 data-translate="accessibility">Accessibility</h3>
+                        <p data-translate="accessibilityDesc">We ensure our platform is accessible to all citizens, regardless of their technical expertise or physical abilities.</p>
                     </div>
                 </div>
             </div>
@@ -319,6 +349,7 @@
     </footer>
 
     <script src="config.js"></script>
+    <script src="languages.js"></script>
     <script src="api.js"></script>
     <script src="about-script.js"></script>
 </body>

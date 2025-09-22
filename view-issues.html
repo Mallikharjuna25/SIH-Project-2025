@@ -29,6 +29,36 @@
                 <a href="report-issue.html" class="nav-link" data-translate="reportIssue">Report Issue</a>
                 <a href="view-issues.html" class="nav-link active" data-translate="viewIssues">View Issues</a>
                 <a href="contact.html" class="nav-link" data-translate="contact">Contact</a>
+                
+                <!-- Language Switcher -->
+                <div class="language-switcher">
+                    <button class="language-btn" id="languageBtn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M2 12h20"/>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                        <span id="currentLang">EN</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </button>
+                    <div class="language-dropdown" id="languageDropdown">
+                        <div class="language-option" data-lang="en">
+                            <span class="flag">🇺🇸</span>
+                            <span>English</span>
+                        </div>
+                        <div class="language-option" data-lang="hi">
+                            <span class="flag">🇮🇳</span>
+                            <span>हिंदी</span>
+                        </div>
+                        <div class="language-option" data-lang="te">
+                            <span class="flag">🇮🇳</span>
+                            <span>తెలుగు</span>
+                        </div>
+                    </div>
+                </div>
+                
                 <a href="admin-login.html" class="btn btn-primary btn-sm" data-translate="adminLogin">Admin Login</a>
             </div>
         </div>
@@ -80,7 +110,7 @@
                     <div class="filter-group">
                         <label for="locationFilter" class="filter-label">Location</label>
                         <select id="locationFilter" class="filter-select">
-                            <option value="">All Locations</option>
+                            <option value="" data-translate="allLocations">All Locations</option>
                             <option value="downtown">Downtown</option>
                             <option value="residential">Residential Area</option>
                             <option value="commercial">Commercial Area</option>
@@ -91,10 +121,10 @@
                     <div class="filter-group">
                         <label for="dateFilter" class="filter-label">Date</label>
                         <select id="dateFilter" class="filter-select">
-                            <option value="">All Time</option>
-                            <option value="today">Today</option>
-                            <option value="week">Last Week</option>
-                            <option value="month">Last Month</option>
+                            <option value="" data-translate="allTime">All Time</option>
+                            <option value="today" data-translate="today">Today</option>
+                            <option value="week" data-translate="lastWeek">Last Week</option>
+                            <option value="month" data-translate="lastMonth">Last Month</option>
                             <option value="custom">Custom Range</option>
                         </select>
                     </div>
@@ -102,9 +132,9 @@
                     <div class="filter-group">
                         <label for="sortBy" class="filter-label">Sort By</label>
                         <select id="sortBy" class="filter-select">
-                            <option value="newest">Newest First</option>
-                            <option value="oldest">Oldest First</option>
-                            <option value="status">By Status</option>
+                            <option value="newest" data-translate="newestFirst">Newest First</option>
+                            <option value="oldest" data-translate="oldestFirst">Oldest First</option>
+                            <option value="status" data-translate="byStatus">By Status</option>
                         </select>
                     </div>
 
@@ -184,9 +214,9 @@
                             <line x1="16" y1="17" x2="8" y2="17"/>
                         </svg>
                     </div>
-                    <h3 class="empty-title">No Issues Found</h3>
-                    <p class="empty-description">No issues match your current search and filter criteria.</p>
-                    <a href="report-issue.html" class="btn btn-primary">Report New Issue</a>
+                    <h3 class="empty-title" data-translate="noIssuesFound">No Issues Found</h3>
+                    <p class="empty-description" data-translate="noIssuesMatch">No issues match your current search and filter criteria.</p>
+                    <a href="report-issue.html" class="btn btn-primary" data-translate="reportNewIssue">Report New Issue</a>
                 </div>
 
                 <!-- No Issues State -->
@@ -209,7 +239,7 @@
     <div id="issueDetailModal" class="modal hidden">
         <div class="modal-content modal-large">
             <div class="modal-header">
-                <h3 class="modal-title" id="modalTitle">Issue Details</h3>
+                <h3 class="modal-title" id="modalTitle" data-translate="issueDetails">Issue Details</h3>
                 <button class="modal-close" id="modalClose">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="18" y1="6" x2="6" y2="18"/>
@@ -235,14 +265,15 @@
             <h3 class="modal-title">Confirm Resolution</h3>
             <p class="modal-message">Has this issue been resolved to your satisfaction?</p>
             <div class="modal-actions">
-                <button class="btn btn-outline" id="notResolvedBtn">No, Still Unresolved</button>
-                <button class="btn btn-primary" id="resolvedBtn">Yes, It's Fixed</button>
+                <button class="btn btn-outline" id="notResolvedBtn" data-translate="no">No, Still Unresolved</button>
+                <button class="btn btn-primary" id="resolvedBtn" data-translate="yes">Yes, It's Fixed</button>
             </div>
         </div>
     </div>
 
     <script src="config.js"></script>
     <script src="api.js"></script>
+    <script src="languages.js"></script>
     <script src="view-issues-script.js"></script>
 </body>
 </html>
