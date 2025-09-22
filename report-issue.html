@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Report an Issue - Civic Issue Reporting System</title>
     <link rel="stylesheet" href="report-styles.css">
+    <link rel="stylesheet" href="language-styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -23,12 +24,12 @@
                 <span class="logo-text">Civic Report</span>
             </div>
             <div class="nav-links">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="report-issue.html" class="nav-link active">Report Issue</a>
-                <a href="view-issues.html" class="nav-link">View Issues</a>
-                <a href="contact.html" class="nav-link">Contact</a>
-                <a href="admin-login.html" class="btn btn-primary btn-sm">Admin Login</a>
+                <a href="index.html" class="nav-link" data-translate="home">Home</a>
+                <a href="about.html" class="nav-link" data-translate="about">About</a>
+                <a href="report-issue.html" class="nav-link active" data-translate="reportIssue">Report Issue</a>
+                <a href="view-issues.html" class="nav-link" data-translate="viewIssues">View Issues</a>
+                <a href="contact.html" class="nav-link" data-translate="contact">Contact</a>
+                <a href="admin-login.html" class="btn btn-primary btn-sm" data-translate="adminLogin">Admin Login</a>
             </div>
         </div>
     </nav>
@@ -38,8 +39,8 @@
         <div class="container">
             <!-- Page Header -->
             <div class="page-header">
-                <h1 class="page-title">Report an Issue</h1>
-                <p class="page-subtitle">Help us make your city cleaner and better by reporting civic problems</p>
+                <h1 class="page-title" data-translate="reportAnIssue">Report an Issue</h1>
+                <p class="page-subtitle" data-translate="helpMakeCity">Help us make your city cleaner and better by reporting civic problems</p>
             </div>
 
             <!-- Report Form -->
@@ -47,17 +48,17 @@
                 <form id="reportForm" class="report-form" enctype="multipart/form-data">
                     <!-- Issue Details Section -->
                     <div class="form-section">
-                        <h2 class="section-title">Issue Details</h2>
+                        <h2 class="section-title" data-translate="issueDetails">Issue Details</h2>
                         
                         <!-- Issue Title -->
                         <div class="form-group">
-                            <label for="issueTitle" class="form-label">Issue Title *</label>
+                            <label for="issueTitle" class="form-label" data-translate="issueTitle">Issue Title *</label>
                             <input 
                                 type="text" 
                                 id="issueTitle" 
                                 name="issueTitle" 
                                 class="form-input" 
-                                placeholder="Enter a short title (e.g., Garbage not collected)"
+                                data-translate="enterShortTitle" placeholder="Enter a short title (e.g., Garbage not collected)"
                                 maxlength="50"
                                 required
                             >
@@ -66,12 +67,12 @@
 
                         <!-- Issue Description -->
                         <div class="form-group">
-                            <label for="issueDescription" class="form-label">Description *</label>
+                            <label for="issueDescription" class="form-label" data-translate="description">Description *</label>
                             <textarea 
                                 id="issueDescription" 
                                 name="issueDescription" 
                                 class="form-textarea" 
-                                placeholder="Describe the issue in detail..."
+                                data-translate="describeIssue" placeholder="Describe the issue in detail..."
                                 rows="4"
                                 minlength="10"
                                 required
@@ -81,14 +82,14 @@
 
                         <!-- Location -->
                         <div class="form-group">
-                            <label for="issueLocation" class="form-label">Location *</label>
+                            <label for="issueLocation" class="form-label" data-translate="location">Location *</label>
                             <div class="location-input-group">
                                 <input 
                                     type="text" 
                                     id="issueLocation" 
                                     name="issueLocation" 
                                     class="form-input" 
-                                    placeholder="Enter location/address"
+                                    data-translate="enterLocation" placeholder="Enter location/address"
                                     required
                                 >
                                 <button type="button" id="getLocationBtn" class="location-btn" title="Get current location">
@@ -103,7 +104,7 @@
 
                         <!-- Photo Upload -->
                         <div class="form-group">
-                            <label for="issuePhoto" class="form-label">Upload Photo</label>
+                            <label for="issuePhoto" class="form-label" data-translate="uploadPhoto">Upload Photo</label>
                             <div class="file-upload-container">
                                 <input 
                                     type="file" 
@@ -117,7 +118,7 @@
                                         <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
                                         <circle cx="12" cy="13" r="4"/>
                                     </svg>
-                                    <span class="file-upload-text">Choose Photo (JPG, PNG - Max 2MB)</span>
+                                    <span class="file-upload-text" data-translate="choosePhoto">Choose Photo (JPG, PNG - Max 2MB)</span>
                                 </label>
                             </div>
                             <div class="file-preview" id="filePreview"></div>
@@ -127,18 +128,18 @@
 
                     <!-- Contact Details Section -->
                     <div class="form-section">
-                        <h2 class="section-title">Contact Details</h2>
-                        <p class="section-description">At least one contact method is required for updates</p>
+                        <h2 class="section-title" data-translate="contactDetails">Contact Details</h2>
+                        <p class="section-description" data-translate="atLeastOneContact">At least one contact method is required for updates</p>
                         
                         <!-- Name -->
                         <div class="form-group">
-                            <label for="reporterName" class="form-label">Full Name *</label>
+                            <label for="reporterName" class="form-label" data-translate="name">Full Name *</label>
                             <input 
                                 type="text" 
                                 id="reporterName" 
                                 name="reporterName" 
                                 class="form-input" 
-                                placeholder="Enter your full name"
+                                data-translate="enterFullName" placeholder="Enter your full name"
                                 required
                             >
                             <div class="form-error" id="reporterNameError"></div>
@@ -146,26 +147,26 @@
 
                         <!-- Email -->
                         <div class="form-group">
-                            <label for="reporterEmail" class="form-label">Email Address</label>
+                            <label for="reporterEmail" class="form-label" data-translate="email">Email Address</label>
                             <input 
                                 type="email" 
                                 id="reporterEmail" 
                                 name="reporterEmail" 
                                 class="form-input" 
-                                placeholder="Enter your email address"
+                                data-translate="enterEmail" placeholder="Enter your email address"
                             >
                             <div class="form-error" id="reporterEmailError"></div>
                         </div>
 
                         <!-- Phone -->
                         <div class="form-group">
-                            <label for="reporterPhone" class="form-label">Phone Number</label>
+                            <label for="reporterPhone" class="form-label" data-translate="phone">Phone Number</label>
                             <input 
                                 type="tel" 
                                 id="reporterPhone" 
                                 name="reporterPhone" 
                                 class="form-input" 
-                                placeholder="Enter your phone number"
+                                data-translate="enterPhone" placeholder="Enter your phone number"
                                 pattern="[0-9]{10}"
                             >
                             <div class="form-error" id="reporterPhoneError"></div>
@@ -175,7 +176,7 @@
                     <!-- Submit Button -->
                     <div class="form-actions">
                         <button type="submit" id="submitBtn" class="submit-btn">
-                            <span class="btn-text">Submit Report</span>
+                            <span class="btn-text" data-translate="submitReport">Submit Report</span>
                             <div class="btn-spinner hidden">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M21 12a9 9 0 11-6.219-8.56"/>
@@ -208,6 +209,7 @@
     </div>
 
     <script src="config.js"></script>
+    <script src="languages.js"></script>
     <script src="api.js"></script>
     <script src="report-script.js"></script>
 </body>

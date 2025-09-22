@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Civic Green Resolve</title>
     <link rel="stylesheet" href="contact-styles.css">
+    <link rel="stylesheet" href="language-styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -24,12 +25,12 @@
             </div>
             
             <div class="nav-links">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="report-issue.html" class="nav-link">Report Issue</a>
-                <a href="view-issues.html" class="nav-link">View Issues</a>
-                <a href="contact.html" class="nav-link active">Contact</a>
-                <a href="admin-login.html" class="nav-link">Admin Login</a>
+                <a href="index.html" class="nav-link" data-translate="home">Home</a>
+                <a href="about.html" class="nav-link" data-translate="about">About</a>
+                <a href="report-issue.html" class="nav-link" data-translate="reportIssue">Report Issue</a>
+                <a href="view-issues.html" class="nav-link" data-translate="viewIssues">View Issues</a>
+                <a href="contact.html" class="nav-link active" data-translate="contact">Contact</a>
+                <a href="admin-login.html" class="nav-link" data-translate="adminLogin">Admin Login</a>
             </div>
             
             <button class="mobile-menu-toggle" id="mobileMenuToggle">
@@ -47,8 +48,8 @@
         <!-- Page Header -->
         <section class="page-header">
             <div class="container">
-                <h1>Contact Us</h1>
-                <p>Get in touch with us for support, questions, or feedback</p>
+                <h1 data-translate="contactUs">Contact Us</h1>
+                <p data-translate="getInTouch">Get in touch with us for support, questions, or feedback</p>
             </div>
         </section>
 
@@ -59,39 +60,39 @@
                     <!-- Contact Form -->
                     <div class="contact-form-container">
                         <div class="contact-form-header">
-                            <h2>Send us a Message</h2>
-                            <p>Fill out the form below and we'll get back to you as soon as possible</p>
+                            <h2 data-translate="sendMessage">Send us a Message</h2>
+                            <p data-translate="fillForm">Fill out the form below and we'll get back to you as soon as possible</p>
                         </div>
                         
                         <form class="contact-form" id="contactForm">
                             <div class="form-group">
-                                <label for="name">Full Name *</label>
+                                <label for="name" data-translate="name">Full Name *</label>
                                 <input type="text" id="name" name="name" class="form-input" placeholder="Enter your full name" required>
                                 <div class="error-message" id="nameError"></div>
                             </div>
                             
                             <div class="form-group">
-                                <label for="email">Email Address *</label>
+                                <label for="email" data-translate="email">Email Address *</label>
                                 <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email address" required>
                                 <div class="error-message" id="emailError"></div>
                             </div>
                             
                             <div class="form-group">
-                                <label for="subject">Subject</label>
+                                <label for="subject" data-translate="subject">Subject</label>
                                 <select id="subject" name="subject" class="form-select">
-                                    <option value="">Select a subject</option>
-                                    <option value="general">General Inquiry</option>
-                                    <option value="support">Technical Support</option>
-                                    <option value="feedback">Feedback</option>
-                                    <option value="complaint">Complaint</option>
-                                    <option value="partnership">Partnership</option>
-                                    <option value="other">Other</option>
+                                    <option value="" data-translate="selectSubject">Select a subject</option>
+                                    <option value="general" data-translate="generalInquiry">General Inquiry</option>
+                                    <option value="support" data-translate="technicalSupport">Technical Support</option>
+                                    <option value="feedback" data-translate="feedback">Feedback</option>
+                                    <option value="complaint" data-translate="complaint">Complaint</option>
+                                    <option value="partnership" data-translate="partnership">Partnership</option>
+                                    <option value="other" data-translate="other">Other</option>
                                 </select>
                             </div>
                             
                             <div class="form-group">
-                                <label for="message">Message *</label>
-                                <textarea id="message" name="message" class="form-textarea" placeholder="Tell us how we can help you..." rows="6" required></textarea>
+                                <label for="message" data-translate="message">Message *</label>
+                                <textarea id="message" name="message" class="form-textarea" data-translate="tellUsHelp" placeholder="Tell us how we can help you..." rows="6" required></textarea>
                                 <div class="error-message" id="messageError"></div>
                             </div>
                             
@@ -104,7 +105,7 @@
                             </div>
                             
                             <button type="submit" class="btn btn-primary btn-large">
-                                <span class="btn-text">Send Message</span>
+                                <span class="btn-text" data-translate="sendMessageBtn">Send Message</span>
                                 <span class="btn-loading hidden">
                                     <svg class="loading-spinner" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M21 12a9 9 0 11-6.219-8.56"/>

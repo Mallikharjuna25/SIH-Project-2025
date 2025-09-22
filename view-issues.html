@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Reported Issues - Civic Issue Reporting System</title>
     <link rel="stylesheet" href="view-issues-styles.css">
+    <link rel="stylesheet" href="language-styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -23,12 +24,12 @@
                 <span class="logo-text">Civic Report</span>
             </div>
             <div class="nav-links">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="report-issue.html" class="nav-link">Report Issue</a>
-                <a href="view-issues.html" class="nav-link active">View Issues</a>
-                <a href="contact.html" class="nav-link">Contact</a>
-                <a href="admin-login.html" class="btn btn-primary btn-sm">Admin Login</a>
+                <a href="index.html" class="nav-link" data-translate="home">Home</a>
+                <a href="about.html" class="nav-link" data-translate="about">About</a>
+                <a href="report-issue.html" class="nav-link" data-translate="reportIssue">Report Issue</a>
+                <a href="view-issues.html" class="nav-link active" data-translate="viewIssues">View Issues</a>
+                <a href="contact.html" class="nav-link" data-translate="contact">Contact</a>
+                <a href="admin-login.html" class="btn btn-primary btn-sm" data-translate="adminLogin">Admin Login</a>
             </div>
         </div>
     </nav>
@@ -38,8 +39,8 @@
         <div class="container">
             <!-- Page Header -->
             <div class="page-header">
-                <h1 class="page-title">Your Reported Issues</h1>
-                <p class="page-subtitle">Track the status of issues you have reported to your local authority</p>
+                <h1 class="page-title" data-translate="yourReportedIssues">Your Reported Issues</h1>
+                <p class="page-subtitle" data-translate="trackStatusIssues">Track the status of issues you have reported to your local authority</p>
             </div>
 
             <!-- Search & Filters Section -->
@@ -54,7 +55,7 @@
                             type="text" 
                             id="searchInput" 
                             class="search-input" 
-                            placeholder="Search by Issue ID, Title, or keywords..."
+                            data-translate="searchIssues" placeholder="Search by Issue ID, Title, or keywords..."
                         >
                         <button class="clear-search-btn" id="clearSearchBtn">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -69,10 +70,10 @@
                     <div class="filter-group">
                         <label for="statusFilter" class="filter-label">Status</label>
                         <select id="statusFilter" class="filter-select">
-                            <option value="">All Statuses</option>
-                            <option value="pending">Pending</option>
-                            <option value="in-progress">In Progress</option>
-                            <option value="resolved">Resolved</option>
+                            <option value="" data-translate="allStatuses">All Statuses</option>
+                            <option value="pending" data-translate="pending">Pending</option>
+                            <option value="in-progress" data-translate="inProgress">In Progress</option>
+                            <option value="resolved" data-translate="resolved">Resolved</option>
                         </select>
                     </div>
 
@@ -128,23 +129,23 @@
             <!-- Issues Display Section -->
             <div class="issues-section">
                 <div class="issues-header">
-                    <h2 class="issues-title">Your Issues</h2>
+                    <h2 class="issues-title" data-translate="yourIssues">Your Issues</h2>
                     <div class="issues-stats">
                         <span class="stat-item">
                             <span class="stat-number" id="totalIssues">0</span>
-                            <span class="stat-label">Total</span>
+                            <span class="stat-label" data-translate="total">Total</span>
                         </span>
                         <span class="stat-item">
                             <span class="stat-number" id="pendingCount">0</span>
-                            <span class="stat-label">Pending</span>
+                            <span class="stat-label" data-translate="pending">Pending</span>
                         </span>
                         <span class="stat-item">
                             <span class="stat-number" id="progressCount">0</span>
-                            <span class="stat-label">In Progress</span>
+                            <span class="stat-label" data-translate="inProgress">In Progress</span>
                         </span>
                         <span class="stat-item">
                             <span class="stat-number" id="resolvedCount">0</span>
-                            <span class="stat-label">Resolved</span>
+                            <span class="stat-label" data-translate="resolved">Resolved</span>
                         </span>
                     </div>
                 </div>
