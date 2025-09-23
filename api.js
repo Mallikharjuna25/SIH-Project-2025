@@ -1,5 +1,5 @@
 // API Integration for SIH Project
-const API_BASE = window.SERVER_CONFIG ? window.SERVER_CONFIG.API_BASE : 'http://localhost:3001/api';
+const API_BASE = window.SERVER_CONFIG ? window.SERVER_CONFIG.API_BASE : 'http://localhost:5000/api';
 
 // Get JWT token from localStorage
 function getToken() {
@@ -28,12 +28,22 @@ async function apiCall(endpoint, options = {}) {
         headers.Authorization = `Bearer ${token}`;
     }
     
-    const response = await fetch(`${API_BASE}${endpoint}`, {
-        ...options,
-        headers
-    });
-    
-    return response.json();
+    try {
+        const response = await fetch(`${API_BASE}${endpoint}`, {
+            ...options,
+            headers
+        });
+        
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+        }
+        
+        return await response.json();
+    } catch (error) {
+        console.error('API call failed:', error);
+        throw error;
+    }
 }
 
 // Authentication functions
@@ -67,19 +77,66 @@ function logout() {
     removeToken();
 }
 
-// Posts functions
-async function getPosts() {
-    return await apiCall('/posts');
+// Issue/Posts functions
+async function getIssues(filters = {}) {
+    const queryParams = new URLSearchParams();
+    Object.keys(filters).forEach(key => {
+        if (filters[key]) queryParams.append(key, filters[key]);
+    });
+    
+    const endpoint = queryParams.toString() ? `/posts?${queryParams}` : '/posts';
+    return await apiCall(endpoint);
 }
 
-async function createPost(title, content) {
+async function createIssue(issueData) {
     return await apiCall('/posts', {
         method: 'POST',
-        body: JSON.stringify({ title, content })
+        body: JSON.stringify(issueData)
     });
 }
 
-// Example usage functions
+async function getIssueById(id) {
+    return await apiCall(`/posts/${id}`);
+}
+
+async function updateIssueStatus(id, status, comment, assignedTo) {
+    return await apiCall(`/posts/${id}/status`, {
+        method: 'PUT',
+        body: JSON.stringify({ status, comment, assignedTo })
+    });
+}
+
+async function getIssueStats() {
+    return await apiCall('/posts/stats/summary');
+}
+
+// Legacy function for backward compatibility
+async function getPosts() {
+    return await getIssues();
+}
+
+async function createPost(title, content) {
+    return await createIssue({ title, content });
+}
+
+// Utility functions for issue management
+function formatIssueForAPI(formData) {
+    return {
+        title: formData.issueType || 'General Issue',
+        content: formData.problemDescription,
+        issueType: formData.issueType,
+        location: formData.location,
+        reporterName: formData.fullName,
+        reporterEmail: formData.reporterEmail,
+        reporterPhone: formData.reporterPhone
+    };
+}
+
+function generateIssueId() {
+    return 'ISS-' + Date.now().toString().slice(-6);
+}
+
+// Example usage functions (for testing)
 function showLoginForm() {
     const email = prompt('Enter email:');
     const password = prompt('Enter password:');
@@ -91,6 +148,8 @@ function showLoginForm() {
             } else {
                 alert('Login failed: ' + result.message);
             }
+        }).catch(error => {
+            alert('Login error: ' + error.message);
         });
     }
 }
@@ -107,21 +166,8 @@ function showSignupForm() {
             } else {
                 alert('Signup failed: ' + result.message);
             }
-        });
-    }
-}
-
-function showCreatePostForm() {
-    const title = prompt('Enter post title:');
-    const content = prompt('Enter post content:');
-    
-    if (title && content) {
-        createPost(title, content).then(result => {
-            if (result._id) {
-                alert('Post created successfully!');
-            } else {
-                alert('Failed to create post: ' + result.message);
-            }
+        }).catch(error => {
+            alert('Signup error: ' + error.message);
         });
     }
 }
@@ -129,11 +175,32 @@ function showCreatePostForm() {
 // Test the API connection
 async function testAPI() {
     try {
-        const posts = await getPosts();
-        console.log('API connected successfully. Posts:', posts);
+        const issues = await getIssues();
+        console.log('API connected successfully. Issues:', issues);
         alert('Backend connected! Check console for details.');
+        return true;
     } catch (error) {
         console.error('API connection failed:', error);
-        alert('Backend connection failed. Make sure server is running on port 3001.');
+        alert('Backend connection failed. Make sure server is running on port 5000.');
+        return false;
+    }
+}
+
+// Check if user is authenticated
+function isAuthenticated() {
+    return !!getToken();
+}
+
+// Auto-register user for issue reporting
+async function autoRegisterUser(name, email) {
+    try {
+        const tempEmail = email || `user${Date.now()}@temp.com`;
+        const tempPassword = 'defaultpass123';
+        
+        const result = await signup(name, tempEmail, tempPassword);
+        return result;
+    } catch (error) {
+        console.error('Auto-registration failed:', error);
+        throw error;
     }
 }

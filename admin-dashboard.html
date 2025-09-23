@@ -127,10 +127,17 @@
     <script src="api.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Check if user is logged in
-            if (!getToken()) {
+            // Check if admin is logged in
+            const adminToken = localStorage.getItem('admin_token');
+            if (!adminToken) {
                 window.location.href = 'admin-login.html';
                 return;
+            }
+
+            // Display admin name if available
+            const adminUser = JSON.parse(localStorage.getItem('admin_user') || '{}');
+            if (adminUser.username) {
+                document.getElementById('adminName').textContent = adminUser.username;
             }
 
             loadDashboard();
@@ -218,7 +225,15 @@
         }
 
         function logout() {
+            // Clear admin session
+            localStorage.removeItem('admin_token');
+            localStorage.removeItem('admin_user');
+            localStorage.removeItem('admin_username');
+            localStorage.removeItem('admin_remember');
+            
+            // Also clear regular token if exists
             removeToken();
+            
             window.location.href = 'admin-login.html';
         }
 

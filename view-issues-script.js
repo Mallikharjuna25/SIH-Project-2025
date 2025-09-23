@@ -26,158 +26,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const issueDetailModal = document.getElementById('issueDetailModal');
     const confirmationModal = document.getElementById('confirmationModal');
     
-    // Data will be loaded from backend API
+    // Issues data - loaded from backend API
     let allIssues = [];
-    
-    // Sample data for fallback
-    function getSampleIssues() {
-        return [
-            {
-                id: 'ISS-1021',
-                titleKey: 'brokenStreetlight',
-                title: t('brokenStreetlight') || 'Broken Streetlight',
-                description: 'Streetlight on Main Street is not working, making the area unsafe at night. This has been an issue for over a week now.',
-                location: 'Main Street, Downtown',
-                dateReported: '2025-01-15',
-                status: 'in-progress',
-                citizen: 'John Doe',
-                photo: null,
-                assignedTo: 'Electricity Department',
-                comments: [
-                    {
-                        date: '2025-01-15',
-                        status: 'pending',
-                        comment: 'Issue reported by citizen'
-                    },
-                    {
-                        date: '2025-01-16',
-                        status: 'in-progress',
-                        comment: 'Assigned to electricity department for repair'
-                    }
-                ]
-            },
-            {
-                id: 'ISS-1022',
-                titleKey: 'garbageNotCollected',
-                title: t('garbageNotCollected') || 'Garbage Not Collected',
-                description: 'Garbage bins on Oak Avenue have not been collected for 3 days. The area is becoming unsanitary.',
-                location: 'Oak Avenue, Residential Area',
-                dateReported: '2025-01-14',
-                status: 'pending',
-                citizen: 'Sarah Johnson',
-                photo: null,
-                assignedTo: 'Sanitation Department',
-                comments: [
-                    {
-                        date: '2025-01-14',
-                        status: 'pending',
-                        comment: 'Issue reported by citizen'
-                    }
-                ]
-            },
-            {
-                id: 'ISS-1023',
-                titleKey: 'potholeOnHighway',
-                title: t('potholeOnHighway') || 'Pothole on Highway',
-                description: 'Large pothole on Highway 101 near exit 15. Dangerous for vehicles and needs immediate attention.',
-                location: 'Highway 101, Exit 15',
-                dateReported: '2025-01-13',
-                status: 'resolved',
-                citizen: 'Mike Chen',
-                photo: null,
-                assignedTo: 'Roads Department',
-                comments: [
-                    {
-                        date: '2025-01-13',
-                        status: 'pending',
-                        comment: 'Issue reported by citizen'
-                    },
-                    {
-                        date: '2025-01-14',
-                        status: 'in-progress',
-                        comment: 'Road crew dispatched for repair'
-                    },
-                    {
-                        date: '2025-01-15',
-                        status: 'resolved',
-                        comment: 'Pothole repaired and road surface restored'
-                    }
-                ]
-            },
-            {
-                id: 'ISS-1024',
-                titleKey: 'waterLeak',
-                title: t('waterLeak') || 'Water Leak',
-                description: 'Water leak from main pipe on Elm Street. Water is pooling on the road and causing inconvenience.',
-                location: 'Elm Street, Commercial Area',
-                dateReported: '2025-01-12',
-                status: 'in-progress',
-                citizen: 'Lisa Rodriguez',
-                photo: null,
-                assignedTo: 'Water Department',
-                comments: [
-                    {
-                        date: '2025-01-12',
-                        status: 'pending',
-                        comment: 'Issue reported by citizen'
-                    },
-                    {
-                        date: '2025-01-13',
-                        status: 'in-progress',
-                        comment: 'Water department investigating the leak'
-                    }
-                ]
-            },
-            {
-                id: 'ISS-1025',
-                titleKey: 'damagedSidewalk',
-                title: t('damagedSidewalk') || 'Damaged Sidewalk',
-                description: 'Cracked and uneven sidewalk on Pine Street near the school. Safety hazard for pedestrians.',
-                location: 'Pine Street, Near School',
-                dateReported: '2025-01-11',
-                status: 'resolved',
-                citizen: 'David Wilson',
-                photo: null,
-                assignedTo: 'Infrastructure Department',
-                comments: [
-                    {
-                        date: '2025-01-11',
-                        status: 'pending',
-                        comment: 'Issue reported by citizen'
-                    },
-                    {
-                        date: '2025-01-12',
-                        status: 'in-progress',
-                        comment: 'Sidewalk repair scheduled'
-                    },
-                    {
-                        date: '2025-01-14',
-                        status: 'resolved',
-                        comment: 'Sidewalk repaired and made safe'
-                    }
-                ]
-            },
-            {
-                id: 'ISS-1026',
-                titleKey: 'trafficLightMalfunction',
-                title: t('trafficLightMalfunction') || 'Traffic Light Malfunction',
-                description: 'Traffic light at the intersection of 5th Avenue and Broadway is not working properly.',
-                location: '5th Avenue & Broadway Intersection',
-                dateReported: '2025-01-10',
-                status: 'pending',
-                citizen: 'Emily Brown',
-                photo: null,
-                assignedTo: 'Traffic Department',
-                comments: [
-                    {
-                        date: '2025-01-10',
-                        status: 'pending',
-                        comment: 'Issue reported by citizen'
-                    }
-                ]
-            }
-        ];
-    }
+    let isLoading = false;
 
     let filteredIssues = [...allIssues];
     let currentView = 'card';
@@ -185,73 +36,182 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize the page
     initializePage();
 
-    function initializePage() {
+    async function initializePage() {
         // Add event listeners
         addEventListeners();
         
-        // Load data from backend
-        loadIssuesFromBackend();
+        // Load initial data from backend
+        await loadIssuesFromAPI();
         
         // Set initial view
         setView('card');
         
-        // Listen for language changes
-        document.addEventListener('languageChanged', function() {
-            loadIssues();
-        });
+        // Set up auto-refresh for status updates
+        setupAutoRefresh();
         
         console.log('View Issues page initialized successfully!');
     }
-    
-    async function loadIssuesFromBackend() {
+
+    function setupAutoRefresh() {
+        // Refresh every 30 seconds to check for admin updates
+        setInterval(async () => {
+            if (!isLoading) {
+                await loadIssuesFromAPI(true); // Silent refresh
+            }
+        }, 30000);
+        
+        // Also refresh when page becomes visible (user switches back to tab)
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden && !isLoading) {
+                loadIssuesFromAPI(true);
+            }
+        });
+    }
+
+    async function loadIssuesFromAPI(silent = false) {
         try {
-            const posts = await getPosts();
+            isLoading = true;
+            if (!silent) showLoadingState();
             
-            // Convert posts to issues format
-            allIssues = posts.map((post, index) => ({
-                id: `ISS-${1000 + index}`,
-                title: post.title,
-                description: post.content,
-                location: extractLocation(post.content),
-                dateReported: post.createdAt ? post.createdAt.split('T')[0] : new Date().toISOString().split('T')[0],
-                status: getRandomStatus(),
-                citizen: post.author?.username || 'Anonymous',
+            // Get current filter values
+            const filters = {
+                status: statusFilter.value,
+                location: locationFilter.value,
+                sortBy: sortBy.value
+            };
+            
+            // Load issues from API
+            const issues = await getIssues(filters);
+            
+            // Check for status changes if this is a refresh
+            const previousIssues = [...allIssues];
+            
+            // Transform API data to match frontend format
+            allIssues = issues.map(issue => ({
+                id: issue._id.slice(-6).toUpperCase(),
+                title: issue.title,
+                description: issue.content,
+                location: issue.location,
+                dateReported: new Date(issue.createdAt).toISOString().slice(0, 10),
+                status: issue.status,
+                citizen: issue.reporterName,
                 photo: null,
-                assignedTo: getRandomDepartment(),
-                comments: [{
-                    date: post.createdAt ? post.createdAt.split('T')[0] : new Date().toISOString().split('T')[0],
-                    status: 'pending',
+                assignedTo: issue.assignedTo,
+                comments: issue.comments || [{
+                    date: new Date(issue.createdAt).toISOString().slice(0, 10),
+                    status: issue.status,
                     comment: 'Issue reported by citizen'
-                }]
+                }],
+                _id: issue._id,
+                lastUpdated: new Date(issue.updatedAt).getTime()
             }));
             
+            // Check for status updates and notify user
+            if (silent && previousIssues.length > 0) {
+                checkForStatusUpdates(previousIssues, allIssues);
+            }
+            
             filteredIssues = [...allIssues];
-            loadIssues();
-            updateStatistics();
             
         } catch (error) {
-            console.error('Failed to load issues from backend:', error);
-            // Use sample data as fallback
-            allIssues = getSampleIssues();
-            filteredIssues = [...allIssues];
+            console.error('Failed to load issues:', error);
+            if (!silent) {
+                showNotification('Failed to load issues. Please check your connection.', 'error');
+            }
+            if (allIssues.length === 0) {
+                allIssues = [];
+                filteredIssues = [];
+            }
+        } finally {
+            isLoading = false;
+            if (!silent) hideLoadingState();
             loadIssues();
             updateStatistics();
         }
     }
-    
-    function extractLocation(content) {
-        const locationMatch = content.match(/Location: ([^\n]+)/);
-        return locationMatch ? locationMatch[1] : 'Location not specified';
+
+    function checkForStatusUpdates(oldIssues, newIssues) {
+        newIssues.forEach(newIssue => {
+            const oldIssue = oldIssues.find(old => old._id === newIssue._id);
+            if (oldIssue && oldIssue.status !== newIssue.status) {
+                // Status changed - show notification with appropriate type
+                const statusText = formatStatus(newIssue.status);
+                let notificationType = 'info';
+                
+                if (newIssue.status === 'resolved') {
+                    notificationType = 'success';
+                } else if (newIssue.status === 'in-progress') {
+                    notificationType = 'warning';
+                }
+                
+                showStatusUpdateNotification(
+                    `Issue ${newIssue.id} status updated to: ${statusText}`,
+                    notificationType,
+                    newIssue
+                );
+                
+                // Add visual highlight to the updated issue
+                setTimeout(() => {
+                    highlightUpdatedIssue(newIssue.id);
+                }, 1000);
+            }
+        });
     }
-    
-    function getRandomStatus() {
-        const statuses = ['pending', 'in-progress', 'resolved'];
-        return statuses[Math.floor(Math.random() * statuses.length)];
+
+    function showStatusUpdateNotification(message, type, issue) {
+        // Create enhanced notification for status updates
+        const notification = document.createElement('div');
+        notification.className = `notification notification-${type} status-update-notification`;
+        notification.innerHTML = `
+            <div class="notification-content">
+                <div class="notification-header">
+                    <strong>Status Update</strong>
+                    <button class="notification-close" onclick="this.parentElement.parentElement.parentElement.remove()">×</button>
+                </div>
+                <div class="notification-message">${message}</div>
+                <div class="notification-actions">
+                    <button class="btn btn-sm btn-outline" onclick="showIssueDetails('${issue.id}'); this.parentElement.parentElement.parentElement.remove();">
+                        View Details
+                    </button>
+                </div>
+            </div>
+        `;
+
+        // Add to page
+        document.body.appendChild(notification);
+
+        // Auto remove after 8 seconds (longer for status updates)
+        setTimeout(() => {
+            if (notification.parentElement) {
+                notification.style.animation = 'slideOutRight 0.3s ease-in';
+                setTimeout(() => notification.remove(), 300);
+            }
+        }, 8000);
     }
-    
-    function getRandomDepartment() {
-        const departments = ['Public Works', 'Sanitation Department', 'Roads Department', 'Water Department', 'Electricity Department'];
-        return departments[Math.floor(Math.random() * departments.length)];
+
+    function highlightUpdatedIssue(issueId) {
+        const issueElements = document.querySelectorAll(`[data-issue-id="${issueId}"]`);
+        issueElements.forEach(element => {
+            element.classList.add('issue-updated');
+            setTimeout(() => {
+                element.classList.remove('issue-updated');
+            }, 3000);
+        });
+    }
+
+    function showLoadingState() {
+        const loadingHtml = `
+            <div class="loading-state">
+                <div class="loading-spinner"></div>
+                <p>Loading issues...</p>
+            </div>
+        `;
+        issuesGrid.innerHTML = loadingHtml;
+        issuesTableBody.innerHTML = '<tr><td colspan="9" class="text-center">Loading issues...</td></tr>';
+    }
+
+    function hideLoadingState() {
+        // Loading state will be replaced by actual content
     }
 
     function addEventListeners() {
@@ -264,6 +224,19 @@ document.addEventListener('DOMContentLoaded', function() {
         locationFilter.addEventListener('change', applyFilters);
         dateFilter.addEventListener('change', applyFilters);
         sortBy.addEventListener('change', applySorting);
+        
+        // Refresh button
+        const refreshBtn = document.createElement('button');
+        refreshBtn.innerHTML = `
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 4v6h-6"/>
+                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+            </svg>
+            Refresh All
+        `;
+        refreshBtn.className = 'btn btn-outline btn-sm';
+        refreshBtn.onclick = () => loadIssuesFromAPI();
+        document.querySelector('.issues-header').appendChild(refreshBtn);
         
         // View toggle
         cardViewBtn.addEventListener('click', () => setView('card'));
@@ -301,7 +274,11 @@ document.addEventListener('DOMContentLoaded', function() {
         applyFilters();
     }
 
-    function applyFilters() {
+    async function applyFilters() {
+        if (isLoading) return;
+        
+        // For client-side filtering, we'll filter the loaded data
+        // In a production app, you might want to send filter parameters to the API
         let filtered = [...allIssues];
         
         // Apply search filter
@@ -394,13 +371,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function loadIssues() {
-        // Update titles with current translations
-        filteredIssues.forEach(issue => {
-            if (issue.titleKey) {
-                issue.title = t(issue.titleKey) || issue.title;
-            }
-        });
-        
         if (filteredIssues.length === 0) {
             showEmptyState();
             return;
@@ -436,6 +406,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function createIssueCard(issue) {
         const card = document.createElement('div');
         card.className = 'issue-card';
+        card.setAttribute('data-issue-id', issue.id);
         card.onclick = () => showIssueDetails(issue);
         
         card.innerHTML = `
@@ -461,6 +432,9 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="issue-actions">
                 <button class="btn btn-sm btn-outline" onclick="event.stopPropagation(); showIssueDetails('${issue.id}')">
                     View Details
+                </button>
+                <button class="btn btn-sm btn-primary" onclick="event.stopPropagation(); refreshSingleIssue('${issue._id}')">
+                    Refresh
                 </button>
             </div>
         `;
@@ -488,7 +462,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <td class="issue-assigned-cell">${issue.assignedTo}</td>
             <td class="issue-actions-cell">
                 <button class="btn btn-sm btn-outline" onclick="event.stopPropagation(); showIssueDetails('${issue.id}')">
-                    ${t('viewDetails')}
+                    View
                 </button>
             </td>
         `;
@@ -645,9 +619,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function formatStatus(status) {
         const statusMap = {
-            'pending': t('pending'),
-            'in-progress': t('inProgress'),
-            'resolved': t('resolved')
+            'pending': 'Pending',
+            'in-progress': 'In Progress',
+            'resolved': 'Resolved'
         };
         return statusMap[status] || status;
     }
@@ -784,9 +758,57 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.appendChild(styleElement);
     }
 
+    // Refresh single issue
+    async function refreshSingleIssue(issueId) {
+        try {
+            const updatedIssue = await getIssueById(issueId);
+            
+            // Update the issue in allIssues array
+            const index = allIssues.findIndex(issue => issue._id === issueId);
+            if (index !== -1) {
+                const transformedIssue = {
+                    id: updatedIssue._id.slice(-6).toUpperCase(),
+                    title: updatedIssue.title,
+                    description: updatedIssue.content,
+                    location: updatedIssue.location,
+                    dateReported: new Date(updatedIssue.createdAt).toISOString().slice(0, 10),
+                    status: updatedIssue.status,
+                    citizen: updatedIssue.reporterName,
+                    photo: null,
+                    assignedTo: updatedIssue.assignedTo,
+                    comments: updatedIssue.comments || [],
+                    _id: updatedIssue._id
+                };
+                
+                // Check if status changed
+                if (allIssues[index].status !== transformedIssue.status) {
+                    let notificationType = 'success';
+                    if (transformedIssue.status === 'in-progress') {
+                        notificationType = 'warning';
+                    } else if (transformedIssue.status === 'pending') {
+                        notificationType = 'info';
+                    }
+                    
+                    showStatusUpdateNotification(
+                        `Issue ${transformedIssue.id} status updated to: ${formatStatus(transformedIssue.status)}`,
+                        notificationType,
+                        transformedIssue
+                    );
+                }
+                
+                allIssues[index] = transformedIssue;
+                applyFilters(); // Refresh the display
+            }
+        } catch (error) {
+            console.error('Failed to refresh issue:', error);
+            showNotification('Failed to refresh issue status', 'error');
+        }
+    }
+
     // Make functions globally available
     window.showIssueDetails = showIssueDetails;
     window.confirmResolution = confirmResolution;
+    window.refreshSingleIssue = refreshSingleIssue;
 });
 
 // Additional styles for issue detail modal

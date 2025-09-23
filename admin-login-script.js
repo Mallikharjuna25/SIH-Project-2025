@@ -223,42 +223,53 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function authenticateUser(username, password) {
+        // Demo credentials for admin login
+        const validCredentials = [
+            { username: 'admin@municipal.gov', password: 'admin123' },
+            { username: 'admin', password: 'admin123' },
+            { username: 'authority@city.gov', password: 'authority123' },
+            { username: 'officer@municipal.gov', password: 'officer123' }
+        ];
+        
         try {
-            // Try to login with backend API
+            // Try to login with backend API first
             const result = await login(username, password);
             
             if (result.token) {
+                // Store admin session
+                localStorage.setItem('admin_token', result.token);
+                localStorage.setItem('admin_user', JSON.stringify(result.user));
+                
                 return {
                     success: true,
                     message: 'Authentication successful',
                     user: {
-                        username: result.user.username,
-                        email: result.user.email,
+                        username: result.user?.username || username,
+                        email: result.user?.email || username,
                         role: 'administrator',
                         permissions: ['view_issues', 'manage_issues', 'update_status', 'view_reports']
                     }
                 };
             } else {
-                return {
-                    success: false,
-                    message: result.message || 'Invalid username or password'
-                };
+                throw new Error(result.message || 'Backend authentication failed');
             }
         } catch (error) {
-            // Fallback to demo credentials if backend is not available
-            const validCredentials = [
-                { username: 'admin@municipal.gov', password: 'admin123' },
-                { username: 'admin', password: 'admin123' },
-                { username: 'authority@city.gov', password: 'authority123' },
-                { username: 'officer@municipal.gov', password: 'officer123' }
-            ];
+            console.log('Backend login failed, trying demo credentials:', error.message);
             
+            // Fallback to demo credentials
             const isValid = validCredentials.some(cred => 
-                (cred.username === username || cred.username === username) && 
-                cred.password === password
+                cred.username === username && cred.password === password
             );
             
             if (isValid) {
+                // Store demo admin session
+                const demoToken = 'demo_admin_' + Date.now();
+                localStorage.setItem('admin_token', demoToken);
+                localStorage.setItem('admin_user', JSON.stringify({
+                    username: username,
+                    role: 'administrator'
+                }));
+                
                 return {
                     success: true,
                     message: 'Authentication successful (demo mode)',
@@ -271,7 +282,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 return {
                     success: false,
-                    message: 'Invalid username or password'
+                    message: 'Invalid username or password. Try: admin/admin123'
                 };
             }
         }

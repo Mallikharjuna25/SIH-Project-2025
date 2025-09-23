@@ -149,6 +149,31 @@ body {
   font-size: 0.875rem;
 }
 
+.demo-credentials {
+  background-color: var(--success-bg);
+  border: 1px solid rgba(40, 167, 69, 0.2);
+  border-radius: var(--border-radius-sm);
+  padding: 1rem;
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.demo-credentials p {
+  margin: 0.25rem 0;
+  font-size: 0.875rem;
+  color: var(--foreground);
+}
+
+.demo-credentials code {
+  background-color: rgba(40, 167, 69, 0.1);
+  padding: 0.125rem 0.375rem;
+  border-radius: 4px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--success);
+  font-weight: 600;
+}
+
 /* Form Container */
 .login-form-container {
   margin-bottom: 1.5rem;

@@ -12,64 +12,54 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="nav">
+    <nav class="nav" id="navigation">
         <div class="nav-container">
             <div class="nav-logo">
                 <div class="logo-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 10c0 6-1 8-8 8s-8-2-8-8 1-8 8-8 8 2 8 8z"/>
                         <circle cx="12" cy="10" r="3"/>
                     </svg>
                 </div>
-                <span class="logo-text">Civic Green Resolve</span>
+                <span class="logo-text">Civic Report</span>
             </div>
-            
-            <div class="nav-links">
+
+            <!-- Desktop Navigation -->
+            <div class="nav-menu desktop-nav">
                 <a href="index.html" class="nav-link" data-translate="home">Home</a>
                 <a href="about.html" class="nav-link" data-translate="about">About</a>
+                <a href="Gallery.html" class="nav-link" data-translate="gallery">Gallery</a>
                 <a href="report-issue.html" class="nav-link" data-translate="reportIssue">Report Issue</a>
                 <a href="view-issues.html" class="nav-link" data-translate="viewIssues">View Issues</a>
                 <a href="contact.html" class="nav-link active" data-translate="contact">Contact</a>
                 
-                <!-- Language Switcher -->
-                <div class="language-switcher">
-                    <button class="language-btn" id="languageBtn">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M2 12h20"/>
-                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-                        </svg>
-                        <span id="currentLang">EN</span>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="6,9 12,15 18,9"/>
-                        </svg>
-                    </button>
-                    <div class="language-dropdown" id="languageDropdown">
-                        <div class="language-option" data-lang="en">
-                            <span class="flag">🇺🇸</span>
-                            <span>English</span>
-                        </div>
-                        <div class="language-option" data-lang="hi">
-                            <span class="flag">🇮🇳</span>
-                            <span>हिंदी</span>
-                        </div>
-                        <div class="language-option" data-lang="te">
-                            <span class="flag">🇮🇳</span>
-                            <span>తెలుగు</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <a href="admin-login.html" class="nav-link" data-translate="adminLogin">Admin Login</a>
+                <a href="admin-login.html" class="btn btn-primary btn-sm" data-translate="adminLogin">Admin Login</a>
             </div>
-            
-            <button class="mobile-menu-toggle" id="mobileMenuToggle">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+            <!-- Mobile menu button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="3" y1="6" x2="21" y2="6"/>
                     <line x1="3" y1="12" x2="21" y2="12"/>
                     <line x1="3" y1="18" x2="21" y2="18"/>
                 </svg>
+                <svg class="close-icon hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
             </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div class="mobile-nav hidden" id="mobileNav">
+            <a href="index.html" class="mobile-nav-link" data-translate="home">Home</a>
+            <a href="about.html" class="mobile-nav-link" data-translate="about">About</a>
+            <a href="Gallery.html" class="mobile-nav-link" data-translate="gallery">Gallery</a>
+            <a href="report-issue.html" class="mobile-nav-link" data-translate="reportIssue">Report Issue</a>
+            <a href="view-issues.html" class="mobile-nav-link" data-translate="viewIssues">View Issues</a>
+            <a href="contact.html" class="mobile-nav-link active" data-translate="contact">Contact</a>
+            
+            <a href="admin-login.html" class="btn btn-primary btn-sm mobile-admin-btn" data-translate="adminLogin">Admin Login</a>
         </div>
     </nav>
 
@@ -360,6 +350,7 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="report-issue.html">Report Issue</a></li>
                         <li><a href="view-issues.html">View Issues</a></li>
+                        <li><a href="Gallery.html">Gallery</a></li>
                         <!-- <li><a href="contact.html">Contact</a></li> -->
                     </ul>
                 </div>

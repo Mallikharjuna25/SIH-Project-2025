@@ -11,21 +11,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="nav">
+    <!-- Navigation -->
+    <nav class="nav" id="navigation">
         <div class="nav-container">
             <div class="nav-logo">
                 <div class="logo-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 10c0 6-1 8-8 8s-8-2-8-8 1-8 8-8 8 2 8 8z"/>
                         <circle cx="12" cy="10" r="3"/>
                     </svg>
                 </div>
-                <span class="logo-text">Civic Green Resolve</span>
+                <span class="logo-text">Civic Report</span>
             </div>
-            
-            <div class="nav-links">
+
+            <!-- Desktop Navigation -->
+            <div class="nav-menu desktop-nav">
                 <a href="index.html" class="nav-link" data-translate="home">Home</a>
                 <a href="about.html" class="nav-link active" data-translate="about">About</a>
+                <a href="Gallery.html" class="nav-link" data-translate="gallery">Gallery</a>
                 <a href="report-issue.html" class="nav-link" data-translate="reportIssue">Report Issue</a>
                 <a href="view-issues.html" class="nav-link" data-translate="viewIssues">View Issues</a>
                 <a href="contact.html" class="nav-link" data-translate="contact">Contact</a>
@@ -59,16 +62,52 @@
                     </div>
                 </div>
                 
-                <a href="admin-login.html" class="nav-link" data-translate="adminLogin">Admin Login</a>
+                <a href="admin-login.html" class="btn btn-primary btn-sm" data-translate="adminLogin">Admin Login</a>
             </div>
-            
-            <button class="mobile-menu-toggle" id="mobileMenuToggle">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+            <!-- Mobile menu button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="3" y1="6" x2="21" y2="6"/>
                     <line x1="3" y1="12" x2="21" y2="12"/>
                     <line x1="3" y1="18" x2="21" y2="18"/>
                 </svg>
+                <svg class="close-icon hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
             </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div class="mobile-nav hidden" id="mobileNav">
+            <a href="index.html" class="mobile-nav-link" data-translate="home">Home</a>
+            <a href="about.html" class="mobile-nav-link active" data-translate="about">About</a>
+            <a href="Gallery.html" class="mobile-nav-link" data-translate="gallery">Gallery</a>
+            <a href="report-issue.html" class="mobile-nav-link" data-translate="reportIssue">Report Issue</a>
+            <a href="view-issues.html" class="mobile-nav-link" data-translate="viewIssues">View Issues</a>
+            <a href="contact.html" class="mobile-nav-link" data-translate="contact">Contact</a>
+            
+            <!-- Mobile Language Switcher -->
+            <div class="mobile-language-switcher">
+                <div class="mobile-lang-title" data-translate="language">Language</div>
+                <div class="mobile-lang-options">
+                    <button class="mobile-lang-option" data-lang="en">
+                        <span class="lang-flag">🇺🇸</span>
+                        <span class="lang-name">English</span>
+                    </button>
+                    <button class="mobile-lang-option" data-lang="hi">
+                        <span class="lang-flag">🇮🇳</span>
+                        <span class="lang-name">हिंदी</span>
+                    </button>
+                    <button class="mobile-lang-option" data-lang="te">
+                        <span class="lang-flag">🇮🇳</span>
+                        <span class="lang-name">తెలుగు</span>
+                    </button>
+                </div>
+            </div>
+            
+            <a href="admin-login.html" class="btn btn-primary btn-sm mobile-admin-btn" data-translate="adminLogin">Admin Login</a>
         </div>
     </nav>
 
@@ -304,7 +343,7 @@
                                 <circle cx="12" cy="10" r="3"/>
                             </svg>
                         </div>
-                        <span class="logo-text">Civic Green Resolve</span>
+                        <span class="logo-text">Civic Report</span>
                     </div>
                     <p class="footer-description">
                         Empowering citizens to report and track civic issues in their community for a better tomorrow.
@@ -318,6 +357,7 @@
                         <li><a href="about.html">About</a></li>
                         <li><a href="report-issue.html">Report Issue</a></li>
                         <li><a href="view-issues.html">View Issues</a></li>
+                        <li><a href="Gallery.html">Gallery</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
@@ -325,10 +365,10 @@
                 <div class="footer-section">
                     <h3>Resources</h3>
                     <ul class="footer-links">
+                        <li><a href="admin-login.html">Admin Login</a></li>
                         <li><a href="#">Help Center</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Accessibility</a></li>
                     </ul>
                 </div>
                 
@@ -343,7 +383,7 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 Civic Green Resolve. All rights reserved.</p>
+                <p>&copy; 2025 Civic Report. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -351,6 +391,6 @@
     <script src="config.js"></script>
     <script src="languages.js"></script>
     <script src="api.js"></script>
-    <script src="about-script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

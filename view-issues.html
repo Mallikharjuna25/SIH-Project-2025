@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Reported Issues - Civic Issue Reporting System</title>
     <link rel="stylesheet" href="view-issues-styles.css">
-    <link rel="stylesheet" href="language-styles.css">
+    <link rel="stylesheet" href="loading-styles.css">
+    <link rel="stylesheet" href="status-update-styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="nav">
+    <nav class="nav" id="navigation">
         <div class="nav-container">
             <div class="nav-logo">
                 <div class="logo-icon">
@@ -23,44 +24,43 @@
                 </div>
                 <span class="logo-text">Civic Report</span>
             </div>
-            <div class="nav-links">
+
+            <!-- Desktop Navigation -->
+            <div class="nav-menu desktop-nav">
                 <a href="index.html" class="nav-link" data-translate="home">Home</a>
                 <a href="about.html" class="nav-link" data-translate="about">About</a>
+                <a href="Gallery.html" class="nav-link" data-translate="gallery">Gallery</a>
                 <a href="report-issue.html" class="nav-link" data-translate="reportIssue">Report Issue</a>
                 <a href="view-issues.html" class="nav-link active" data-translate="viewIssues">View Issues</a>
                 <a href="contact.html" class="nav-link" data-translate="contact">Contact</a>
                 
-                <!-- Language Switcher -->
-                <div class="language-switcher">
-                    <button class="language-btn" id="languageBtn">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M2 12h20"/>
-                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-                        </svg>
-                        <span id="currentLang">EN</span>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="6,9 12,15 18,9"/>
-                        </svg>
-                    </button>
-                    <div class="language-dropdown" id="languageDropdown">
-                        <div class="language-option" data-lang="en">
-                            <span class="flag">🇺🇸</span>
-                            <span>English</span>
-                        </div>
-                        <div class="language-option" data-lang="hi">
-                            <span class="flag">🇮🇳</span>
-                            <span>हिंदी</span>
-                        </div>
-                        <div class="language-option" data-lang="te">
-                            <span class="flag">🇮🇳</span>
-                            <span>తెలుగు</span>
-                        </div>
-                    </div>
-                </div>
-                
                 <a href="admin-login.html" class="btn btn-primary btn-sm" data-translate="adminLogin">Admin Login</a>
             </div>
+
+            <!-- Mobile menu button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+                <svg class="close-icon hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div class="mobile-nav hidden" id="mobileNav">
+            <a href="index.html" class="mobile-nav-link" data-translate="home">Home</a>
+            <a href="about.html" class="mobile-nav-link" data-translate="about">About</a>
+            <a href="Gallery.html" class="mobile-nav-link" data-translate="gallery">Gallery</a>
+            <a href="report-issue.html" class="mobile-nav-link" data-translate="reportIssue">Report Issue</a>
+            <a href="view-issues.html" class="mobile-nav-link active" data-translate="viewIssues">View Issues</a>
+            <a href="contact.html" class="mobile-nav-link" data-translate="contact">Contact</a>
+            
+            <a href="admin-login.html" class="btn btn-primary btn-sm mobile-admin-btn" data-translate="adminLogin">Admin Login</a>
         </div>
     </nav>
 
@@ -69,8 +69,8 @@
         <div class="container">
             <!-- Page Header -->
             <div class="page-header">
-                <h1 class="page-title" data-translate="yourReportedIssues">Your Reported Issues</h1>
-                <p class="page-subtitle" data-translate="trackStatusIssues">Track the status of issues you have reported to your local authority</p>
+                <h1 class="page-title">Your Reported Issues</h1>
+                <p class="page-subtitle">Track the status of issues you have reported to your local authority</p>
             </div>
 
             <!-- Search & Filters Section -->
@@ -85,7 +85,7 @@
                             type="text" 
                             id="searchInput" 
                             class="search-input" 
-                            data-translate="searchIssues" placeholder="Search by Issue ID, Title, or keywords..."
+                            placeholder="Search by Issue ID, Title, or keywords..."
                         >
                         <button class="clear-search-btn" id="clearSearchBtn">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -100,17 +100,17 @@
                     <div class="filter-group">
                         <label for="statusFilter" class="filter-label">Status</label>
                         <select id="statusFilter" class="filter-select">
-                            <option value="" data-translate="allStatuses">All Statuses</option>
-                            <option value="pending" data-translate="pending">Pending</option>
-                            <option value="in-progress" data-translate="inProgress">In Progress</option>
-                            <option value="resolved" data-translate="resolved">Resolved</option>
+                            <option value="">All Statuses</option>
+                            <option value="pending">Pending</option>
+                            <option value="in-progress">In Progress</option>
+                            <option value="resolved">Resolved</option>
                         </select>
                     </div>
 
                     <div class="filter-group">
                         <label for="locationFilter" class="filter-label">Location</label>
                         <select id="locationFilter" class="filter-select">
-                            <option value="" data-translate="allLocations">All Locations</option>
+                            <option value="">All Locations</option>
                             <option value="downtown">Downtown</option>
                             <option value="residential">Residential Area</option>
                             <option value="commercial">Commercial Area</option>
@@ -121,10 +121,10 @@
                     <div class="filter-group">
                         <label for="dateFilter" class="filter-label">Date</label>
                         <select id="dateFilter" class="filter-select">
-                            <option value="" data-translate="allTime">All Time</option>
-                            <option value="today" data-translate="today">Today</option>
-                            <option value="week" data-translate="lastWeek">Last Week</option>
-                            <option value="month" data-translate="lastMonth">Last Month</option>
+                            <option value="">All Time</option>
+                            <option value="today">Today</option>
+                            <option value="week">Last Week</option>
+                            <option value="month">Last Month</option>
                             <option value="custom">Custom Range</option>
                         </select>
                     </div>
@@ -132,9 +132,9 @@
                     <div class="filter-group">
                         <label for="sortBy" class="filter-label">Sort By</label>
                         <select id="sortBy" class="filter-select">
-                            <option value="newest" data-translate="newestFirst">Newest First</option>
-                            <option value="oldest" data-translate="oldestFirst">Oldest First</option>
-                            <option value="status" data-translate="byStatus">By Status</option>
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="status">By Status</option>
                         </select>
                     </div>
 
@@ -159,23 +159,23 @@
             <!-- Issues Display Section -->
             <div class="issues-section">
                 <div class="issues-header">
-                    <h2 class="issues-title" data-translate="yourIssues">Your Issues</h2>
+                    <h2 class="issues-title">Your Issues</h2>
                     <div class="issues-stats">
                         <span class="stat-item">
                             <span class="stat-number" id="totalIssues">0</span>
-                            <span class="stat-label" data-translate="total">Total</span>
+                            <span class="stat-label">Total</span>
                         </span>
                         <span class="stat-item">
                             <span class="stat-number" id="pendingCount">0</span>
-                            <span class="stat-label" data-translate="pending">Pending</span>
+                            <span class="stat-label">Pending</span>
                         </span>
                         <span class="stat-item">
                             <span class="stat-number" id="progressCount">0</span>
-                            <span class="stat-label" data-translate="inProgress">In Progress</span>
+                            <span class="stat-label">In Progress</span>
                         </span>
                         <span class="stat-item">
                             <span class="stat-number" id="resolvedCount">0</span>
-                            <span class="stat-label" data-translate="resolved">Resolved</span>
+                            <span class="stat-label">Resolved</span>
                         </span>
                     </div>
                 </div>
@@ -214,9 +214,9 @@
                             <line x1="16" y1="17" x2="8" y2="17"/>
                         </svg>
                     </div>
-                    <h3 class="empty-title" data-translate="noIssuesFound">No Issues Found</h3>
-                    <p class="empty-description" data-translate="noIssuesMatch">No issues match your current search and filter criteria.</p>
-                    <a href="report-issue.html" class="btn btn-primary" data-translate="reportNewIssue">Report New Issue</a>
+                    <h3 class="empty-title">No Issues Found</h3>
+                    <p class="empty-description">No issues match your current search and filter criteria.</p>
+                    <a href="report-issue.html" class="btn btn-primary">Report New Issue</a>
                 </div>
 
                 <!-- No Issues State -->
@@ -239,7 +239,7 @@
     <div id="issueDetailModal" class="modal hidden">
         <div class="modal-content modal-large">
             <div class="modal-header">
-                <h3 class="modal-title" id="modalTitle" data-translate="issueDetails">Issue Details</h3>
+                <h3 class="modal-title" id="modalTitle">Issue Details</h3>
                 <button class="modal-close" id="modalClose">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="18" y1="6" x2="6" y2="18"/>
@@ -265,15 +265,14 @@
             <h3 class="modal-title">Confirm Resolution</h3>
             <p class="modal-message">Has this issue been resolved to your satisfaction?</p>
             <div class="modal-actions">
-                <button class="btn btn-outline" id="notResolvedBtn" data-translate="no">No, Still Unresolved</button>
-                <button class="btn btn-primary" id="resolvedBtn" data-translate="yes">Yes, It's Fixed</button>
+                <button class="btn btn-outline" id="notResolvedBtn">No, Still Unresolved</button>
+                <button class="btn btn-primary" id="resolvedBtn">Yes, It's Fixed</button>
             </div>
         </div>
     </div>
 
     <script src="config.js"></script>
     <script src="api.js"></script>
-    <script src="languages.js"></script>
     <script src="view-issues-script.js"></script>
 </body>
 </html>
