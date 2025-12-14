@@ -74,7 +74,7 @@ process.on('SIGINT', async () => {
   process.exit(0);
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 const server = app.listen(PORT, '0.0.0.0', () => {
   console.log('🚀 SIH Project Backend Server Started');
   console.log(`📍 Local access: http://localhost:${PORT}`);

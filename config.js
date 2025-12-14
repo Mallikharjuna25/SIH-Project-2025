@@ -1,10 +1,10 @@
 // Configuration for SIH Project
 window.SERVER_CONFIG = {
     // Backend API base URL
-    API_BASE: 'http://localhost:5000/api',
+    API_BASE: 'http://localhost:8080/api',
     
     // Alternative URLs for different environments
-    DEVELOPMENT: 'http://localhost:5000/api',
+    DEVELOPMENT: 'http://localhost:8080/api',
     PRODUCTION: 'https://your-production-domain.com/api',
     
     // Other configuration options

@@ -145,16 +145,17 @@
 
         async function loadDashboard() {
             try {
-                const posts = await getPosts();
+                // Load demo issues from localStorage
+                const demoIssues = JSON.parse(localStorage.getItem('demoIssues') || '[]');
                 
-                // Convert posts to issues and update stats
-                const issues = posts.map((post, index) => ({
-                    id: `ISS-${1000 + index}`,
-                    title: post.title,
-                    content: post.content,
-                    reporter: post.author?.username || 'Anonymous',
-                    date: post.createdAt ? new Date(post.createdAt).toLocaleDateString() : new Date().toLocaleDateString(),
-                    status: getRandomStatus()
+                // Convert demo issues to admin format
+                const issues = demoIssues.map(issue => ({
+                    id: issue._id,
+                    title: issue.title,
+                    content: issue.content,
+                    reporter: issue.reporterName || 'Anonymous',
+                    date: new Date(issue.createdAt).toLocaleDateString(),
+                    status: issue.status || 'pending'
                 }));
 
                 updateStats(issues);
@@ -217,7 +218,25 @@
         }
 
         function updateStatus(issueId, newStatus) {
-            showNotification(`Issue ${issueId} status updated to ${formatStatus(newStatus)}`, 'success');
+            try {
+                // Update status in localStorage
+                const demoIssues = JSON.parse(localStorage.getItem('demoIssues') || '[]');
+                const issueIndex = demoIssues.findIndex(issue => issue._id === issueId);
+                
+                if (issueIndex !== -1) {
+                    demoIssues[issueIndex].status = newStatus;
+                    localStorage.setItem('demoIssues', JSON.stringify(demoIssues));
+                    showNotification(`Issue ${issueId} status updated to ${formatStatus(newStatus)}`, 'success');
+                    
+                    // Reload dashboard to reflect changes
+                    setTimeout(() => loadDashboard(), 1000);
+                } else {
+                    showNotification('Issue not found', 'error');
+                }
+            } catch (error) {
+                console.error('Failed to update status:', error);
+                showNotification('Failed to update status', 'error');
+            }
         }
 
         function loadIssues() {

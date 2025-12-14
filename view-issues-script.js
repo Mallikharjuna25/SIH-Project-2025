@@ -73,22 +73,15 @@ document.addEventListener('DOMContentLoaded', function() {
             isLoading = true;
             if (!silent) showLoadingState();
             
-            // Get current filter values
-            const filters = {
-                status: statusFilter.value,
-                location: locationFilter.value,
-                sortBy: sortBy.value
-            };
-            
-            // Load issues from API
-            const issues = await getIssues(filters);
+            // Load demo issues from localStorage
+            const demoIssues = JSON.parse(localStorage.getItem('demoIssues') || '[]');
             
             // Check for status changes if this is a refresh
             const previousIssues = [...allIssues];
             
-            // Transform API data to match frontend format
-            allIssues = issues.map(issue => ({
-                id: issue._id.slice(-6).toUpperCase(),
+            // Transform demo data to match frontend format
+            allIssues = demoIssues.map(issue => ({
+                id: issue._id,
                 title: issue.title,
                 description: issue.content,
                 location: issue.location,
@@ -96,14 +89,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 status: issue.status,
                 citizen: issue.reporterName,
                 photo: null,
-                assignedTo: issue.assignedTo,
+                assignedTo: issue.assignedTo || 'Not assigned',
                 comments: issue.comments || [{
                     date: new Date(issue.createdAt).toISOString().slice(0, 10),
                     status: issue.status,
                     comment: 'Issue reported by citizen'
                 }],
                 _id: issue._id,
-                lastUpdated: new Date(issue.updatedAt).getTime()
+                lastUpdated: new Date(issue.createdAt).getTime()
             }));
             
             // Check for status updates and notify user
@@ -116,12 +109,10 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (error) {
             console.error('Failed to load issues:', error);
             if (!silent) {
-                showNotification('Failed to load issues. Please check your connection.', 'error');
+                showNotification('Failed to load demo issues.', 'error');
             }
-            if (allIssues.length === 0) {
-                allIssues = [];
-                filteredIssues = [];
-            }
+            allIssues = [];
+            filteredIssues = [];
         } finally {
             isLoading = false;
             if (!silent) hideLoadingState();
